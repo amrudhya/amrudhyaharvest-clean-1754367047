@@ -1,4 +1,15 @@
 /* ==========================================
+   Font Loading Optimization
+   ========================================== */
+@font-face {
+    font-family: 'General Sans';
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/generalsans/v1/11JnAqM3Vu5ltsQFWyWWWgDZFOl-T-iqlKIqKI5n9v6QXLaQSatZvNtm55NU14fFSQ.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ==========================================
    CSS Variables & Reset
    ========================================== */
 :root {

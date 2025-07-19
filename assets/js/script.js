@@ -123,9 +123,13 @@ function handleNavbarScroll() {
  * Toggle mobile menu
  */
 function toggleMobileMenu() {
+    const isActive = navMenu.classList.contains('active');
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
     document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+    
+    // Update ARIA attributes for accessibility
+    hamburger.setAttribute('aria-expanded', !isActive);
 }
 
 /**
@@ -135,6 +139,9 @@ function closeMobileMenu() {
     hamburger.classList.remove('active');
     navMenu.classList.remove('active');
     document.body.style.overflow = '';
+    
+    // Update ARIA attributes for accessibility
+    hamburger.setAttribute('aria-expanded', 'false');
 }
 
 /**
@@ -682,64 +689,161 @@ function addSkipLink() {
  * Initialize all event listeners
  */
 function initEventListeners() {
-    // Optimized scroll events with better throttling
-    let ticking = false;
-    function optimizedScrollHandler() {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                handleNavbarScroll();
-                toggleBackToTop();
-                animateOnScroll();
-                animateCounters();
-                ticking = false;
+    try {
+        // Optimized scroll events with better throttling
+        let ticking = false;
+        function optimizedScrollHandler() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    try {
+                        handleNavbarScroll();
+                        toggleBackToTop();
+                        animateOnScroll();
+                        animateCounters();
+                    } catch (error) {
+                        console.error('Error in scroll handler:', error);
+                    } finally {
+                        ticking = false;
+                    }
+                });
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
+        
+        // Navigation events with error handling
+        if (hamburger) {
+            hamburger.addEventListener('click', (e) => {
+                try {
+                    e.preventDefault();
+                    toggleMobileMenu();
+                } catch (error) {
+                    console.error('Error toggling mobile menu:', error);
+                }
             });
-            ticking = true;
         }
+        
+        // Navigation links with error handling
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                try {
+                    handleNavLinkClick(e);
+                } catch (error) {
+                    console.error('Error handling nav link click:', error);
+                    // Fallback to default behavior
+                }
+            });
+        });
+        
+        // Back to top button with error handling
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', (e) => {
+                try {
+                    e.preventDefault();
+                    scrollToTop();
+                } catch (error) {
+                    console.error('Error scrolling to top:', error);
+                }
+            });
+        }
+        
+        // Contact form with enhanced error handling
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                try {
+                    handleFormSubmit(e);
+                } catch (error) {
+                    console.error('Error handling form submission:', error);
+                    e.preventDefault();
+                    showNotification('An unexpected error occurred. Please try again.', 'error');
+                }
+            });
+        }
+        
+        // Newsletter forms with error handling
+        document.querySelectorAll('.newsletter-form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                try {
+                    handleNewsletterSubmit(e);
+                } catch (error) {
+                    console.error('Error handling newsletter submission:', error);
+                    e.preventDefault();
+                }
+            });
+        });
+        
+        // Close mobile menu when clicking outside with error handling
+        document.addEventListener('click', (e) => {
+            try {
+                if (navMenu && hamburger && !navMenu.contains(e.target) && !hamburger.contains(e.target) && navMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            } catch (error) {
+                console.error('Error handling outside click:', error);
+            }
+        });
+        
+        // Window resize with error handling
+        window.addEventListener('resize', debounce(() => {
+            try {
+                closeMobileMenu();
+            } catch (error) {
+                console.error('Error handling window resize:', error);
+            }
+        }, 250));
+        
+        // Page visibility change
+        document.addEventListener('visibilitychange', () => {
+            try {
+                if (document.hidden) {
+                    // Page is hidden, pause any animations or timers if needed
+                } else {
+                    // Page is visible again
+                }
+            } catch (error) {
+                console.error('Error handling visibility change:', error);
+            }
+        });
+        
+    } catch (error) {
+        console.error('Critical error initializing event listeners:', error);
+        // Initialize basic fallback functionality
+        initFallbackEventListeners();
     }
-    
-    window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
-    
-    // Navigation events
-    hamburger.addEventListener('click', toggleMobileMenu);
-    
-    // Navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener('click', handleNavLinkClick);
-    });
-    
-    // Back to top button
-    backToTopBtn.addEventListener('click', scrollToTop);
-    
-    // Contact form
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleFormSubmit);
+}
+
+/**
+ * Fallback event listeners for critical errors
+ */
+function initFallbackEventListeners() {
+    try {
+        // Basic hamburger menu functionality
+        const hamburgerEl = document.getElementById('hamburger');
+        const navMenuEl = document.getElementById('nav-menu');
+        
+        if (hamburgerEl && navMenuEl) {
+            hamburgerEl.addEventListener('click', () => {
+                navMenuEl.classList.toggle('active');
+                hamburgerEl.classList.toggle('active');
+            });
+        }
+        
+        // Basic smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+    } catch (error) {
+        console.error('Even fallback event listeners failed:', error);
     }
-    
-    // Newsletter forms
-    document.querySelectorAll('.newsletter-form').forEach(form => {
-        form.addEventListener('submit', handleNewsletterSubmit);
-    });
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !hamburger.contains(e.target) && navMenu.classList.contains('active')) {
-            closeMobileMenu();
-        }
-    });
-    
-    // Window resize
-    window.addEventListener('resize', debounce(() => {
-        closeMobileMenu();
-    }, 250));
-    
-    // Page visibility change
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            // Page is hidden, pause any animations or timers if needed
-        } else {
-            // Page is visible again
-        }
-    });
 }
 
 // ==========================================
