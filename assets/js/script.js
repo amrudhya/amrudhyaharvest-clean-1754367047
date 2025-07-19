@@ -165,9 +165,9 @@ function handleNavLinkClick(e) {
 // ==========================================
 
 /**
- * Animate elements when they come into view (optimized)
+ * Animate elements when they come into view (optimized with Intersection Observer)
  */
-let animateElements = null; // Cache the elements
+let animationObserver = null;
 function animateOnScroll() {
     // Skip animations on mobile for better performance
     const isMobile = window.innerWidth <= 768;
@@ -177,46 +177,42 @@ function animateOnScroll() {
         return;
     }
     
-    // Cache elements on first run
-    if (!animateElements) {
-        animateElements = document.querySelectorAll('.product-card, .feature-card, .cert-card, .about-card, .stat-item, .contact-card, .capability-card, .quality-feature');
-    }
-    
-    // Use requestAnimationFrame for better performance
-    requestAnimationFrame(() => {
-        animateElements.forEach((element, index) => {
-            if (isInViewport(element) && !element.classList.contains('animated')) {
-                // Reduce animation delay for faster perception
-                setTimeout(() => {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                    element.classList.add('animated');
-                }, index * 20); // Reduced from 50ms to 20ms for much faster stagger
-            }
+    // Use Intersection Observer for better performance
+    if (!animationObserver && 'IntersectionObserver' in window) {
+        animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    // Stagger animations with reduced delay
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.classList.add('animated');
+                        animationObserver.unobserve(entry.target); // Stop observing once animated
+                    }, index * 15); // Reduced delay for faster animations
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '50px'
         });
-    });
+        
+        // Observe elements
+        const elementsToAnimate = document.querySelectorAll('.product-card, .feature-card, .cert-card, .about-card, .stat-item, .contact-card, .capability-card, .quality-feature');
+        elementsToAnimate.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            animationObserver.observe(element);
+        });
+    }
 }
 
 /**
- * Initialize animation styles
+ * Initialize animation styles (DISABLED for performance)
  */
 function initAnimations() {
-    // Check if user prefers reduced motion or if on mobile
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isMobile = window.innerWidth <= 768;
-    
-    if (prefersReducedMotion || isMobile) {
-        // Skip heavy animations on mobile or for users who prefer reduced motion
-        return;
-    }
-    
-    const animateElements = document.querySelectorAll('.product-card, .feature-card, .cert-card, .about-card, .stat-item, .contact-card, .capability-card, .quality-feature');
-    
-    animateElements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)'; // Reduced movement
-        element.style.transition = 'opacity 0.3s ease, transform 0.3s ease'; // Much faster
-    });
+    // Animations disabled for better performance
+    return;
 }
 
 // ==========================================
@@ -322,10 +318,13 @@ function isValidEmail(email) {
 }
 
 /**
- * Handle contact form submission with Formspree
+ * Handle contact form submission with enhanced validation and UX
  */
 function handleFormSubmit(e) {
     e.preventDefault();
+    
+    // Clear previous errors
+    clearFormErrors();
     
     const formData = new FormData(contactForm);
     const formObject = {};
@@ -340,17 +339,20 @@ function handleFormSubmit(e) {
         formObject[validationKey] = value.trim();
     });
     
-    // Validate form
-    const validationErrors = validateForm(formObject);
+    // Validate form with enhanced validation
+    const validationErrors = validateFormEnhanced(formObject);
     if (validationErrors.length > 0) {
-        showNotification(validationErrors.join('<br>'), 'error');
+        showFormErrors(validationErrors);
         return;
     }
     
     // Show loading state
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
-    submitButton.textContent = 'Sending...';
+    const submitButton = contactForm.querySelector('#submit-btn');
+    const btnText = submitButton.querySelector('.btn-text');
+    const btnLoading = submitButton.querySelector('.btn-loading');
+    
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'block';
     submitButton.disabled = true;
     
     // Submit to Formspree
@@ -364,10 +366,11 @@ function handleFormSubmit(e) {
     .then(response => {
         if (response.ok) {
             // Show success message
-            showNotification('Thank you! Your export inquiry has been sent successfully. We will contact you within 24 hours with a detailed quote.', 'success');
+            showNotification('🎉 Thank you! Your export inquiry has been sent successfully. We will contact you within 24 hours with a detailed quote and pricing information.', 'success');
             
-            // Reset form
+            // Reset form and clear validation states
             contactForm.reset();
+            clearFormErrors();
             
             // Also send notification email (fallback)
             sendBackupEmail(formObject);
@@ -381,14 +384,171 @@ function handleFormSubmit(e) {
         // Try backup email method
         sendBackupEmail(formObject);
         
-        showNotification('Your inquiry has been processed. If you don\'t receive a confirmation email within 1 hour, please contact us directly at info@amrudhya.com', 'success');
+        showNotification('✅ Your inquiry has been processed. If you don\'t receive a confirmation email within 1 hour, please contact us directly at info@amrudhya.com', 'success');
         contactForm.reset();
+        clearFormErrors();
     })
     .finally(() => {
         // Reset button
-        submitButton.textContent = originalText;
+        btnText.style.display = 'block';
+        btnLoading.style.display = 'none';
         submitButton.disabled = false;
     });
+}
+
+/**
+ * Enhanced form validation with real-time feedback
+ */
+function validateFormEnhanced(formData) {
+    const errors = [];
+    
+    // Name validation
+    if (!formData.name || formData.name.length < 2) {
+        errors.push({ field: 'name', message: 'Please enter your full name (at least 2 characters)' });
+    } else if (formData.name.length > 50) {
+        errors.push({ field: 'name', message: 'Name cannot exceed 50 characters' });
+    }
+    
+    // Email validation
+    if (!formData.email) {
+        errors.push({ field: 'email', message: 'Email address is required' });
+    } else if (!isValidEmail(formData.email)) {
+        errors.push({ field: 'email', message: 'Please enter a valid email address' });
+    }
+    
+    // Message validation
+    if (!formData.message || formData.message.length < 10) {
+        errors.push({ field: 'message', message: 'Please provide more details about your requirements (at least 10 characters)' });
+    } else if (formData.message.length > 1000) {
+        errors.push({ field: 'message', message: 'Message cannot exceed 1000 characters' });
+    }
+    
+    return errors;
+}
+
+/**
+ * Show form errors with enhanced UX
+ */
+function showFormErrors(errors) {
+    errors.forEach(error => {
+        const field = document.getElementById(error.field);
+        const errorElement = document.getElementById(`${error.field}-error`);
+        const formGroup = field.closest('.form-group');
+        
+        if (field && errorElement && formGroup) {
+            formGroup.classList.add('has-error');
+            errorElement.textContent = error.message;
+            errorElement.classList.add('show');
+            
+            // Focus on first error field
+            if (errors.indexOf(error) === 0) {
+                field.focus();
+                field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    });
+    
+    // Show error notification
+    showNotification(`Please correct the ${errors.length} error${errors.length > 1 ? 's' : ''} below`, 'error');
+}
+
+/**
+ * Clear form errors
+ */
+function clearFormErrors() {
+    const errorElements = contactForm.querySelectorAll('.form-error');
+    const formGroups = contactForm.querySelectorAll('.form-group');
+    
+    errorElements.forEach(element => {
+        element.classList.remove('show');
+        element.textContent = '';
+    });
+    
+    formGroups.forEach(group => {
+        group.classList.remove('has-error', 'has-success');
+    });
+}
+
+/**
+ * Real-time field validation
+ */
+function initRealTimeValidation() {
+    const fields = ['name', 'email', 'message'];
+    
+    fields.forEach(fieldName => {
+        const field = document.getElementById(fieldName);
+        if (field) {
+            field.addEventListener('blur', () => validateField(fieldName));
+            field.addEventListener('input', debounce(() => validateField(fieldName), 500));
+        }
+    });
+}
+
+/**
+ * Validate individual field
+ */
+function validateField(fieldName) {
+    const field = document.getElementById(fieldName);
+    const errorElement = document.getElementById(`${fieldName}-error`);
+    const formGroup = field.closest('.form-group');
+    
+    if (!field || !errorElement || !formGroup) return;
+    
+    const value = field.value.trim();
+    let isValid = true;
+    let errorMessage = '';
+    
+    switch (fieldName) {
+        case 'name':
+            if (value.length === 0) {
+                isValid = false;
+                errorMessage = 'Name is required';
+            } else if (value.length < 2) {
+                isValid = false;
+                errorMessage = 'Name must be at least 2 characters';
+            } else if (value.length > 50) {
+                isValid = false;
+                errorMessage = 'Name cannot exceed 50 characters';
+            }
+            break;
+            
+        case 'email':
+            if (value.length === 0) {
+                isValid = false;
+                errorMessage = 'Email is required';
+            } else if (!isValidEmail(value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid email address';
+            }
+            break;
+            
+        case 'message':
+            if (value.length === 0) {
+                isValid = false;
+                errorMessage = 'Message is required';
+            } else if (value.length < 10) {
+                isValid = false;
+                errorMessage = 'Please provide more details (at least 10 characters)';
+            } else if (value.length > 1000) {
+                isValid = false;
+                errorMessage = 'Message cannot exceed 1000 characters';
+            }
+            break;
+    }
+    
+    // Update UI based on validation result
+    formGroup.classList.remove('has-error', 'has-success');
+    
+    if (!isValid && value.length > 0) {
+        formGroup.classList.add('has-error');
+        errorElement.textContent = errorMessage;
+        errorElement.classList.add('show');
+    } else if (isValid && value.length > 0) {
+        formGroup.classList.add('has-success');
+        errorElement.classList.remove('show');
+    } else {
+        errorElement.classList.remove('show');
+    }
 }
 
 /**
@@ -533,6 +693,176 @@ function handleNewsletterSubmit(e) {
     if (email) {
         showNotification('Thank you for subscribing to our newsletter!', 'success');
         e.target.reset();
+    }
+}
+
+// ==========================================
+// Testimonials Carousel
+// ==========================================
+
+/**
+ * Initialize testimonials carousel
+ */
+function initTestimonialsCarousel() {
+    const track = document.getElementById('testimonial-track');
+    const cards = document.querySelectorAll('.testimonial-card');
+    const prevBtn = document.getElementById('testimonial-prev');
+    const nextBtn = document.getElementById('testimonial-next');
+    const dots = document.querySelectorAll('.dot');
+    
+    if (!track || cards.length === 0) return;
+    
+    let currentSlide = 0;
+    const totalSlides = cards.length;
+    let autoSlideInterval;
+    
+    // Show specific slide
+    function showSlide(index) {
+        // Remove active class from all cards and dots
+        cards.forEach(card => card.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Add active class to current slide
+        if (cards[index]) {
+            cards[index].classList.add('active');
+        }
+        if (dots[index]) {
+            dots[index].classList.add('active');
+        }
+        
+        // Transform track
+        const translateX = -index * 100;
+        track.style.transform = `translateX(${translateX}%)`;
+        
+        // Update button states
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === totalSlides - 1;
+        }
+        
+        currentSlide = index;
+    }
+    
+    // Next slide
+    function nextSlide() {
+        const next = (currentSlide + 1) % totalSlides;
+        showSlide(next);
+    }
+    
+    // Previous slide
+    function prevSlide() {
+        const prev = (currentSlide - 1 + totalSlides) % totalSlides;
+        showSlide(prev);
+    }
+    
+    // Auto slide functionality
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+    
+    function stopAutoSlide() {
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+        }
+    }
+    
+    // Event listeners
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoSlide();
+            setTimeout(startAutoSlide, 3000); // Restart auto slide after 3 seconds
+        });
+    }
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoSlide();
+            setTimeout(startAutoSlide, 3000);
+        });
+    }
+    
+    // Dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+            stopAutoSlide();
+            setTimeout(startAutoSlide, 3000);
+        });
+    });
+    
+    // Pause auto slide on hover
+    const carousel = document.querySelector('.testimonials-carousel');
+    if (carousel) {
+        carousel.addEventListener('mouseenter', stopAutoSlide);
+        carousel.addEventListener('mouseleave', startAutoSlide);
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+            stopAutoSlide();
+            setTimeout(startAutoSlide, 3000);
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+            stopAutoSlide();
+            setTimeout(startAutoSlide, 3000);
+        }
+    });
+    
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    if (carousel) {
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+    }
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe left - next slide
+                nextSlide();
+            } else {
+                // Swipe right - previous slide
+                prevSlide();
+            }
+            stopAutoSlide();
+            setTimeout(startAutoSlide, 3000);
+        }
+    }
+    
+    // Initialize
+    showSlide(0);
+    startAutoSlide();
+    
+    // Intersection Observer for performance
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startAutoSlide();
+                } else {
+                    stopAutoSlide();
+                }
+            });
+        });
+        
+        if (carousel) {
+            observer.observe(carousel);
+        }
     }
 }
 
@@ -1000,11 +1330,13 @@ function init() {
     // Initialize components
     initAnimations();
     initEventListeners();
+    initTestimonialsCarousel();
     initMapMarkers();
     initProductCards();
     initProductFiltering();
     initLazyLoading();
     initKeyboardNavigation();
+    initRealTimeValidation();
     addSkipLink();
     initErrorHandling();
     monitorPerformance();
