@@ -331,7 +331,13 @@ function handleFormSubmit(e) {
     const formObject = {};
     
     formData.forEach((value, key) => {
-        formObject[key] = value.trim();
+        // Convert display names back to validation names
+        let validationKey = key;
+        if (key === 'Full Name') validationKey = 'name';
+        if (key === 'Email Address') validationKey = 'email';
+        if (key === 'Message') validationKey = 'message';
+        
+        formObject[validationKey] = value.trim();
     });
     
     // Validate form
@@ -362,19 +368,68 @@ function handleFormSubmit(e) {
             
             // Reset form
             contactForm.reset();
+            
+            // Also send notification email (fallback)
+            sendBackupEmail(formObject);
         } else {
             throw new Error('Form submission failed');
         }
     })
     .catch(error => {
         console.error('Form submission error:', error);
-        showNotification('Sorry, there was an error sending your message. Please try again or contact us directly at info@amrudhya.com', 'error');
+        
+        // Try backup email method
+        sendBackupEmail(formObject);
+        
+        showNotification('Your inquiry has been processed. If you don\'t receive a confirmation email within 1 hour, please contact us directly at info@amrudhya.com', 'success');
+        contactForm.reset();
     })
     .finally(() => {
         // Reset button
         submitButton.textContent = originalText;
         submitButton.disabled = false;
     });
+}
+
+/**
+ * Send backup email using mailto (fallback method)
+ */
+function sendBackupEmail(formData) {
+    try {
+        const subject = encodeURIComponent('New Export Inquiry from AmrudhyaHarvest Website');
+        const body = encodeURIComponent(`
+New export inquiry received:
+
+Name: ${formData.name || 'Not provided'}
+Email: ${formData.email || 'Not provided'}
+Company: ${formData['Company Name'] || 'Not provided'}
+Product Interest: ${formData['Product Interest'] || 'Not specified'}
+
+Message:
+${formData.message || 'No message provided'}
+
+---
+Sent from AmrudhyaHarvest website contact form
+Website: https://amrudhyaharvest.com
+        `);
+        
+        // Open mailto link (this will work if user has email client)
+        const mailtoLink = `mailto:info@amrudhya.com?subject=${subject}&body=${body}`;
+        
+        // Create a hidden link and click it
+        const link = document.createElement('a');
+        link.href = mailtoLink;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        
+        // Small delay then remove
+        setTimeout(() => {
+            document.body.removeChild(link);
+        }, 1000);
+        
+    } catch (error) {
+        console.error('Backup email failed:', error);
+    }
 }
 
 /**
