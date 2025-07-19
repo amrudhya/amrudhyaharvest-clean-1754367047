@@ -32,7 +32,7 @@ AmrudhyaHarvest specializes in exporting premium quality agricultural products f
 ### Contact
 - **Phone**: +91 9106516439
 - **Email**: info@amrudhya.com
-- **WhatsApp**: +91 9558064734
+- **WhatsApp**: +91 9106516439
 
 ### Technology Stack
 - HTML5, CSS3, JavaScript
