@@ -71,7 +71,7 @@ function smoothScrollTo(element) {
     const targetPosition = element.offsetTop - 80; // Account for navbar height
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
-    const duration = 1000;
+    const duration = 400; // Reduced from 1000ms to 400ms
     let start = null;
 
     function animation(currentTime) {
@@ -169,6 +169,14 @@ function handleNavLinkClick(e) {
  */
 let animateElements = null; // Cache the elements
 function animateOnScroll() {
+    // Skip animations on mobile for better performance
+    const isMobile = window.innerWidth <= 768;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (isMobile || prefersReducedMotion) {
+        return;
+    }
+    
     // Cache elements on first run
     if (!animateElements) {
         animateElements = document.querySelectorAll('.product-card, .feature-card, .cert-card, .about-card, .stat-item, .contact-card, .capability-card, .quality-feature');
@@ -183,7 +191,7 @@ function animateOnScroll() {
                     element.style.opacity = '1';
                     element.style.transform = 'translateY(0)';
                     element.classList.add('animated');
-                }, index * 50); // Reduced from 100ms to 50ms
+                }, index * 20); // Reduced from 50ms to 20ms for much faster stagger
             }
         });
     });
@@ -193,12 +201,21 @@ function animateOnScroll() {
  * Initialize animation styles
  */
 function initAnimations() {
+    // Check if user prefers reduced motion or if on mobile
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.innerWidth <= 768;
+    
+    if (prefersReducedMotion || isMobile) {
+        // Skip heavy animations on mobile or for users who prefer reduced motion
+        return;
+    }
+    
     const animateElements = document.querySelectorAll('.product-card, .feature-card, .cert-card, .about-card, .stat-item, .contact-card, .capability-card, .quality-feature');
     
     animateElements.forEach(element => {
         element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        element.style.transform = 'translateY(20px)'; // Reduced movement
+        element.style.transition = 'opacity 0.3s ease, transform 0.3s ease'; // Much faster
     });
 }
 
@@ -244,7 +261,7 @@ function animateCounters() {
     counters.forEach(counter => {
         if (isInViewport(counter) && !counter.classList.contains('counted')) {
             const target = parseInt(counter.textContent.replace(/[^\d]/g, ''));
-            const duration = 1000; // Fixed duration instead of speed-based
+            const duration = 600; // Faster counter animation
             const startTime = performance.now();
             const startValue = 0;
             
@@ -590,17 +607,17 @@ function filterProducts(category) {
             setTimeout(() => {
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
-                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            }, 50);
+                card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+            }, 20);
         } else {
             // Hide card
             card.style.opacity = '0';
-            card.style.transform = 'translateY(-20px)';
-            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            card.style.transform = 'translateY(-10px)';
+            card.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
             
             setTimeout(() => {
                 card.style.display = 'none';
-            }, 300);
+            }, 150);
         }
     });
     
@@ -611,7 +628,7 @@ function filterProducts(category) {
             // Trigger layout recalculation
             grid.style.display = 'grid';
         }
-    }, 350);
+    }, 200);
 }
 
 // ==========================================

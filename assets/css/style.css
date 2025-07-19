@@ -1,4 +1,37 @@
 /* ==========================================
+   Mobile Performance Optimizations
+   ========================================== */
+/* Reduce animations on mobile for better performance */
+@media (max-width: 768px) {
+    *, *::before, *::after {
+        animation-duration: 0.2s !important;
+        animation-delay: 0s !important;
+        transition-duration: 0.15s !important;
+    }
+    
+    /* Disable complex animations on mobile */
+    .pulse-animation,
+    .float-animation {
+        animation: none !important;
+    }
+    
+    /* Improve touch targets */
+    .btn, .nav-link, .tab-btn, .hamburger {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Optimize scrolling */
+    body {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: auto; /* Disable smooth scroll on mobile for better performance */
+    }
+}
+
+/* ==========================================
    Font Loading Optimization
    ========================================== */
 @font-face {
@@ -46,10 +79,10 @@
     --border-radius-lg: 16px;
     --border-radius-xl: 24px;
     
-    /* Smooth Transitions */
-    --transition-fast: 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
-    --transition-medium: 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
-    --transition-slow: 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    /* Smooth Transitions - Optimized for Speed */
+    --transition-fast: 0.1s cubic-bezier(0.4, 0.0, 0.2, 1);
+    --transition-medium: 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+    --transition-slow: 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
     
     /* Subtle Shadows */
     --shadow-xs: 0 1px 2px rgba(26, 46, 26, 0.04);
@@ -232,7 +265,7 @@ p {
     font-weight: var(--font-weight-medium);
     z-index: 1001;
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    animation: slideDown 0.8s ease;
+    animation: slideDown 0.3s ease;
     border: 2px solid rgba(255,255,255,0.2);
     transition: all var(--transition-medium);
 }
@@ -425,7 +458,7 @@ p {
     font-weight: var(--font-weight-medium);
     color: var(--primary-green);
     opacity: 0;
-    animation: fadeInUp 1s ease 0.2s forwards;
+    animation: fadeInUp 0.4s ease 0.1s forwards;
 }
 
 .hero-badge i {
@@ -436,7 +469,7 @@ p {
     font-weight: var(--font-weight-light);
     margin-bottom: 2rem;
     opacity: 0;
-    animation: fadeInUp 1s ease forwards;
+    animation: fadeInUp 0.4s ease forwards;
     letter-spacing: -0.02em;
 }
 
@@ -454,7 +487,7 @@ p {
     font-size: clamp(1.15rem, 2vw, 1.35rem);
     margin-bottom: 2.5rem;
     opacity: 0;
-    animation: fadeInUp 1s ease 0.4s forwards;
+    animation: fadeInUp 0.4s ease 0.2s forwards;
     color: var(--text-light);
     max-width: 700px;
     margin-left: auto;
@@ -468,7 +501,7 @@ p {
     gap: 3rem;
     margin-bottom: 3rem;
     opacity: 0;
-    animation: fadeInUp 1s ease 0.6s forwards;
+    animation: fadeInUp 0.4s ease 0.3s forwards;
 }
 
 .hero-stats .stat {
@@ -496,7 +529,7 @@ p {
     justify-content: center;
     flex-wrap: wrap;
     opacity: 0;
-    animation: fadeInUp 1s ease 0.8s forwards;
+    animation: fadeInUp 0.4s ease 0.4s forwards;
 }
 
 .hero-cta .btn {
@@ -512,7 +545,7 @@ p {
     transform: translateX(-50%);
     color: var(--text-light);
     opacity: 0;
-    animation: fadeInUp 1s ease 0.9s forwards;
+    animation: fadeInUp 0.4s ease 0.5s forwards;
 }
 
 .scroll-indicator {
@@ -531,7 +564,7 @@ p {
 }
 
 .scroll-indicator i {
-    animation: bounce 2s infinite;
+    animation: bounce 1.5s infinite;
     font-size: 1rem;
 }
 
