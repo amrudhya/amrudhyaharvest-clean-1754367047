@@ -525,7 +525,7 @@ function hideTooltip() {
 }
 
 // ==========================================
-// Product Card Hover Effects
+// Product Card Hover Effects & Filtering
 // ==========================================
 
 /**
@@ -543,6 +543,75 @@ function initProductCards() {
             card.style.background = 'var(--white)';
         });
     });
+}
+
+/**
+ * Initialize product filtering functionality
+ */
+function initProductFiltering() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const productCards = document.querySelectorAll('.product-card[data-category]');
+    
+    if (tabButtons.length === 0 || productCards.length === 0) {
+        return; // No filtering elements found
+    }
+    
+    // Add click event listeners to tab buttons
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.getAttribute('data-category');
+            
+            // Update active tab
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Filter products
+            filterProducts(category);
+        });
+    });
+}
+
+/**
+ * Filter products based on category
+ */
+function filterProducts(category) {
+    const productCards = document.querySelectorAll('.product-card[data-category]');
+    
+    productCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        
+        if (category === 'all' || cardCategory === category) {
+            // Show card
+            card.style.display = 'block';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            // Animate in
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            }, 50);
+        } else {
+            // Hide card
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(-20px)';
+            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            
+            setTimeout(() => {
+                card.style.display = 'none';
+            }, 300);
+        }
+    });
+    
+    // Update grid layout after filtering
+    setTimeout(() => {
+        const grid = document.querySelector('.products-grid');
+        if (grid) {
+            // Trigger layout recalculation
+            grid.style.display = 'grid';
+        }
+    }, 350);
 }
 
 // ==========================================
@@ -861,6 +930,7 @@ function init() {
     initEventListeners();
     initMapMarkers();
     initProductCards();
+    initProductFiltering();
     initLazyLoading();
     initKeyboardNavigation();
     addSkipLink();
