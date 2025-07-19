@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;">
+  <defs>
+    <linearGradient id="faviconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#85C443"/>
+      <stop offset="50%" stop-color="#043025"/>
+      <stop offset="100%" stop-color="#FBD801"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="16" cy="16" r="15" fill="url(#faviconGradient)"/>
+  
+  <!-- Wheat Symbol -->
+  <g transform="translate(16,16)">
+    <!-- Main stem -->
+    <line x1="0" y1="8" x2="0" y2="-8" stroke="#F5FBF7" stroke-width="1.5" stroke-linecap="round"/>
+    
+    <!-- Wheat grains - simplified for favicon -->
+    <ellipse cx="-2" cy="-6" rx="1.5" ry="1" fill="#F5FBF7"/>
+    <ellipse cx="-2.5" cy="-3" rx="1.5" ry="1" fill="#F5FBF7"/>
+    <ellipse cx="-2" cy="0" rx="1.5" ry="1" fill="#F5FBF7"/>
+    <ellipse cx="-1.5" cy="3" rx="1.5" ry="1" fill="#F5FBF7"/>
+    
+    <ellipse cx="2" cy="-6" rx="1.5" ry="1" fill="#F5FBF7"/>
+    <ellipse cx="2.5" cy="-3" rx="1.5" ry="1" fill="#F5FBF7"/>
+    <ellipse cx="2" cy="0" rx="1.5" ry="1" fill="#F5FBF7"/>
+    <ellipse cx="1.5" cy="3" rx="1.5" ry="1" fill="#F5FBF7"/>
+    
+    <!-- Simple awns -->
+    <line x1="-4" y1="-5" x2="-6" y2="-7" stroke="#F5FBF7" stroke-width="0.8" opacity="0.8"/>
+    <line x1="-4.5" y1="-2" x2="-6.5" y2="-3.5" stroke="#F5FBF7" stroke-width="0.8" opacity="0.8"/>
+    
+    <line x1="4" y1="-5" x2="6" y2="-7" stroke="#F5FBF7" stroke-width="0.8" opacity="0.8"/>
+    <line x1="4.5" y1="-2" x2="6.5" y2="-3.5" stroke="#F5FBF7" stroke-width="0.8" opacity="0.8"/>
+  </g>
+</svg>
