@@ -57,6 +57,39 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            page_title: 'AmrudhyaHarvest - Premium Indian Agricultural Exports',
+            custom_map: {'content_group1': 'Agricultural Exports'}
+        });
+        
+        // Enhanced E-commerce tracking for quotes
+        function trackQuoteRequest(product_category) {
+            gtag('event', 'generate_lead', {
+                'currency': 'USD',
+                'value': 0,
+                'content_group1': 'Agricultural Exports',
+                'custom_parameters': {
+                    'product_category': product_category,
+                    'lead_type': 'quote_request'
+                }
+            });
+        }
+        
+        // Gallery view tracking
+        function trackGalleryView(category) {
+            gtag('event', 'view_item_list', {
+                'item_list_name': category + '_gallery',
+                'content_group1': 'Product Gallery'
+            });
+        }
+    </script>
+    
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
     {
@@ -320,6 +353,10 @@
                         </div>
                         <div class="product-actions">
                             <a href="#contact" class="btn btn-primary">Request Quote</a>
+                            <button class="product-gallery-btn" onclick="openGallery('pulses')">
+                                <i class="fas fa-images"></i>
+                                <span>View Gallery</span>
+                            </button>
                         </div>
                     </div>
                     
@@ -350,6 +387,10 @@
                         </div>
                         <div class="product-actions">
                             <a href="#contact" class="btn btn-primary">Request Quote</a>
+                            <button class="product-gallery-btn" onclick="openGallery('rice')">
+                                <i class="fas fa-images"></i>
+                                <span>View Gallery</span>
+                            </button>
                         </div>
                     </div>
                     
@@ -380,6 +421,10 @@
                         </div>
                         <div class="product-actions">
                             <a href="#contact" class="btn btn-primary">Request Quote</a>
+                            <button class="product-gallery-btn" onclick="openGallery('spices')">
+                                <i class="fas fa-images"></i>
+                                <span>View Gallery</span>
+                            </button>
                         </div>
                     </div>
                     
@@ -410,6 +455,10 @@
                         </div>
                         <div class="product-actions">
                             <a href="#contact" class="btn btn-primary">Request Quote</a>
+                            <button class="product-gallery-btn" onclick="openGallery('oils')">
+                                <i class="fas fa-images"></i>
+                                <span>View Gallery</span>
+                            </button>
                         </div>
                     </div>
                     
@@ -440,6 +489,10 @@
                         </div>
                         <div class="product-actions">
                             <a href="#contact" class="btn btn-primary">Request Quote</a>
+                            <button class="product-gallery-btn" onclick="openGallery('custom')">
+                                <i class="fas fa-images"></i>
+                                <span>View Gallery</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -856,6 +909,64 @@
                         </div>
                     </div>
                     
+                    <!-- Business Intelligence Fields -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="budget">Budget Range (USD)</label>
+                            <select id="budget" name="Budget Range">
+                                <option value="">Select budget range</option>
+                                <option value="5k">$5,000 - $15,000</option>
+                                <option value="15k">$15,000 - $50,000</option>
+                                <option value="50k">$50,000 - $100,000</option>
+                                <option value="100k">$100,000+</option>
+                                <option value="custom">Custom Budget</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeline">Project Timeline</label>
+                            <select id="timeline" name="Project Timeline">
+                                <option value="">Select timeline</option>
+                                <option value="immediate">Immediate (1-2 weeks)</option>
+                                <option value="1month">Within 1 month</option>
+                                <option value="3months">1-3 months</option>
+                                <option value="6months">3-6 months</option>
+                                <option value="longterm">Long-term partnership</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="destination">Destination Country</label>
+                            <select id="destination" name="Destination Country">
+                                <option value="">Select destination</option>
+                                <option value="usa">United States</option>
+                                <option value="uk">United Kingdom</option>
+                                <option value="canada">Canada</option>
+                                <option value="australia">Australia</option>
+                                <option value="uae">United Arab Emirates</option>
+                                <option value="germany">Germany</option>
+                                <option value="france">France</option>
+                                <option value="singapore">Singapore</option>
+                                <option value="other">Other Country</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="certifications">Required Certifications</label>
+                            <select id="certifications" name="Required Certifications" multiple>
+                                <option value="organic">Organic Certification</option>
+                                <option value="haccp">HACCP Compliant</option>
+                                <option value="iso22000">ISO 22000</option>
+                                <option value="halal">Halal Certification</option>
+                                <option value="kosher">Kosher Certification</option>
+                                <option value="fda">FDA Approved</option>
+                                <option value="usda">USDA Certified</option>
+                                <option value="eu">EU Standards</option>
+                            </select>
+                            <small class="form-help">Hold Ctrl/Cmd to select multiple</small>
+                        </div>
+                    </div>
+                    
                     
                     <div class="form-group">
                         <label for="message">Message *</label>
@@ -971,11 +1082,37 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Chat Widget -->
-    <div class="whatsapp-widget">
-        <a href="https://wa.me/919106516439" target="_blank" class="whatsapp-float">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+    <!-- Enhanced Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-bubble" id="chatBubble">
+            <i class="fas fa-comments"></i>
+            <span class="chat-notification">Chat with us!</span>
+        </div>
+        <div class="chat-options" id="chatOptions">
+            <a href="https://wa.me/919106516439" target="_blank" class="chat-option whatsapp">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+            <a href="mailto:info@amrudhya.com" class="chat-option email">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+            </a>
+            <a href="tel:+919106516439" class="chat-option phone">
+                <i class="fas fa-phone"></i>
+                <span>Call</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Product Gallery Modal -->
+    <div id="galleryModal" class="gallery-modal">
+        <div class="gallery-modal-content">
+            <button class="gallery-close" onclick="closeGallery()">&times;</button>
+            <h3 id="galleryTitle" class="gallery-title"></h3>
+            <div id="galleryContainer" class="gallery-container">
+                <!-- Gallery content will be populated by JavaScript -->
+            </div>
+        </div>
     </div>
 
     <!-- Back to Top Button -->

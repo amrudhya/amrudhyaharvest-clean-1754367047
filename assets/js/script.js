@@ -1210,6 +1210,295 @@ if (document.readyState === 'loading') {
     init();
 }
 
+// ==========================================
+// PRODUCT GALLERY FUNCTIONALITY
+// ==========================================
+
+// Gallery data for different product categories
+const galleryData = {
+    pulses: [
+        {
+            image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=300&fit=crop&crop=center",
+            title: "Premium Chana Dal",
+            description: "High-quality split chickpeas with consistent size and golden color. Rich in protein and ideal for various culinary applications.",
+            features: ["High Protein", "Premium Grade", "Export Quality"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=400&h=300&fit=crop&crop=center",
+            title: "Red Lentils (Masoor Dal)",
+            description: "Vibrant red lentils perfect for quick cooking and high nutritional value. Popular in international markets.",
+            features: ["Quick Cooking", "High Iron", "Global Demand"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1573663215416-8d5e3c43b9b5?w=400&h=300&fit=crop&crop=center",
+            title: "Yellow Moong Dal",
+            description: "Premium yellow split mung beans with excellent digestibility and mild flavor. Perfect for health-conscious consumers.",
+            features: ["Easy Digest", "Protein Rich", "Organic Option"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1550734997-b8b8a8486d8a?w=400&h=300&fit=crop&crop=center",
+            title: "Black Urad Dal",
+            description: "Premium black gram lentils with rich nutritional profile. Essential ingredient in South Asian cuisine.",
+            features: ["Traditional", "High Protein", "Premium Quality"]
+        }
+    ],
+    rice: [
+        {
+            image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=300&fit=crop&crop=center",
+            title: "Basmati Rice - 1121",
+            description: "Extra-long grain premium basmati rice with distinctive aroma and fluffy texture. The gold standard for export quality rice.",
+            features: ["Extra Long Grain", "Aged Rice", "Premium Export"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1605051254668-b7a7be51e2f0?w=400&h=300&fit=crop&crop=center",
+            title: "Jasmine Rice",
+            description: "Fragrant long-grain rice with subtle floral aroma and soft texture. Perfect for Asian cuisine applications.",
+            features: ["Fragrant", "Long Grain", "Soft Texture"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1563131045-7e2a71b50b54?w=400&h=300&fit=crop&crop=center",
+            title: "Sona Masoori Rice",
+            description: "Medium-grain rice with excellent cooking characteristics and neutral flavor. Ideal for daily consumption.",
+            features: ["Medium Grain", "Easy Cooking", "Versatile Use"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1549301019-d2de2f3ba8d4?w=400&h=300&fit=crop&crop=center",
+            title: "Organic Brown Rice",
+            description: "Nutritious whole grain brown rice with high fiber content and nutty flavor. Growing demand in health food markets.",
+            features: ["Organic Certified", "High Fiber", "Whole Grain"]
+        }
+    ],
+    spices: [
+        {
+            image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&h=300&fit=crop&crop=center",
+            title: "Turmeric Powder",
+            description: "Golden yellow turmeric powder with high curcumin content. Premium grade with vibrant color and earthy aroma.",
+            features: ["High Curcumin", "Premium Grade", "Anti-inflammatory"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&crop=center",
+            title: "Cumin Seeds",
+            description: "Aromatic whole cumin seeds with intense flavor and distinctive aroma. Essential spice for global cuisines.",
+            features: ["Whole Seeds", "Intense Flavor", "Global Demand"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&crop=center",
+            title: "Green Cardamom",
+            description: "Premium green cardamom pods with intense aroma and sweet flavor. The 'Queen of Spices' for luxury markets.",
+            features: ["Premium Pods", "Intense Aroma", "Luxury Grade"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1553909168-e6c1b4bfa4e5?w=400&h=300&fit=crop&crop=center",
+            title: "Red Chili Powder",
+            description: "Vibrant red chili powder with balanced heat and rich color. Perfect for adding flavor and heat to dishes.",
+            features: ["Balanced Heat", "Rich Color", "Export Quality"]
+        }
+    ],
+    oils: [
+        {
+            image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&h=300&fit=crop&crop=center",
+            title: "Cold-Pressed Coconut Oil",
+            description: "Virgin coconut oil extracted using traditional cold-press methods. Retains natural flavor and nutritional benefits.",
+            features: ["Virgin Quality", "Cold-Pressed", "Natural Flavor"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1571849235926-69de7ea88d8b?w=400&h=300&fit=crop&crop=center",
+            title: "Mustard Oil",
+            description: "Pungent mustard oil with traditional extraction methods. Popular in South Asian cuisine and health applications.",
+            features: ["Traditional", "Pungent Flavor", "Health Benefits"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=400&h=300&fit=crop&crop=center",
+            title: "Sesame Oil",
+            description: "Premium sesame oil with nutty flavor and high smoke point. Excellent for cooking and medicinal purposes.",
+            features: ["Nutty Flavor", "High Smoke Point", "Medicinal Use"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1556909195-f61a52ad2e03?w=400&h=300&fit=crop&crop=center",
+            title: "Sunflower Oil",
+            description: "Light and neutral sunflower oil perfect for cooking and frying. High in vitamin E and heart-healthy.",
+            features: ["Light Flavor", "High Vitamin E", "Heart Healthy"]
+        }
+    ],
+    custom: [
+        {
+            image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&crop=center",
+            title: "Bulk Packaging Solutions",
+            description: "Industrial-grade bulk packaging for large volume orders. Suitable for distributors and food manufacturers.",
+            features: ["Industrial Grade", "Large Volume", "Distributor Ready"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1586936893354-362ad6ae47ba?w=400&h=300&fit=crop&crop=center",
+            title: "Retail Packaging",
+            description: "Consumer-friendly retail packaging with attractive designs and portion control. Perfect for supermarket shelves.",
+            features: ["Consumer Friendly", "Attractive Design", "Portion Control"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop&crop=center",
+            title: "Private Label Solutions",
+            description: "Custom branding and private label services for your business. Complete packaging design and manufacturing.",
+            features: ["Custom Branding", "Private Label", "Design Service"]
+        },
+        {
+            image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=300&fit=crop&crop=center",
+            title: "Gift Set Packaging",
+            description: "Premium gift sets for festivals and corporate gifting. Elegant packaging with traditional Indian aesthetics.",
+            features: ["Premium Quality", "Gift Ready", "Traditional Design"]
+        }
+    ]
+};
+
+// Gallery functions
+function openGallery(category) {
+    const modal = document.getElementById('galleryModal');
+    const title = document.getElementById('galleryTitle');
+    const container = document.getElementById('galleryContainer');
+    
+    if (!modal || !title || !container) {
+        console.error('Gallery elements not found');
+        return;
+    }
+    
+    // Set title
+    title.textContent = `${category.charAt(0).toUpperCase() + category.slice(1)} Gallery`;
+    
+    // Clear container
+    container.innerHTML = '';
+    
+    // Get gallery data for category
+    const items = galleryData[category] || [];
+    
+    // Create gallery items
+    items.forEach((item, index) => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        galleryItem.style.opacity = '0';
+        galleryItem.style.transform = 'translateY(20px)';
+        
+        galleryItem.innerHTML = `
+            <img src="${item.image}" alt="${item.title}" loading="lazy">
+            <div class="gallery-item-content">
+                <h4 class="gallery-item-title">${item.title}</h4>
+                <p class="gallery-item-description">${item.description}</p>
+                <div class="gallery-item-features">
+                    ${item.features.map(feature => `<span class="gallery-item-feature">${feature}</span>`).join('')}
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(galleryItem);
+        
+        // Animate item entrance
+        setTimeout(() => {
+            galleryItem.style.transition = 'all 0.4s ease';
+            galleryItem.style.opacity = '1';
+            galleryItem.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+    
+    // Show modal
+    modal.classList.add('active');
+    
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+    
+    // Track gallery view for analytics
+    if (typeof trackGalleryView === 'function') {
+        trackGalleryView(category);
+    }
+    
+    // Accessibility: focus on close button
+    const closeButton = modal.querySelector('.gallery-close');
+    if (closeButton) {
+        closeButton.focus();
+    }
+}
+
+function closeGallery() {
+    const modal = document.getElementById('galleryModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Close gallery on escape key or outside click
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeGallery();
+    }
+});
+
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('galleryModal');
+    if (e.target === modal) {
+        closeGallery();
+    }
+});
+
+// ==========================================
+// ENHANCED CHAT WIDGET FUNCTIONALITY
+// ==========================================
+
+// Initialize chat widget
+function initChatWidget() {
+    const chatBubble = document.getElementById('chatBubble');
+    const chatOptions = document.getElementById('chatOptions');
+    let isOpen = false;
+    
+    if (!chatBubble || !chatOptions) return;
+    
+    // Toggle chat options on bubble click
+    chatBubble.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isOpen = !isOpen;
+        
+        if (isOpen) {
+            chatOptions.classList.add('active');
+            chatBubble.querySelector('i').className = 'fas fa-times';
+        } else {
+            chatOptions.classList.remove('active');
+            chatBubble.querySelector('i').className = 'fas fa-comments';
+        }
+    });
+    
+    // Close chat options when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!chatBubble.contains(e.target) && !chatOptions.contains(e.target)) {
+            if (isOpen) {
+                chatOptions.classList.remove('active');
+                chatBubble.querySelector('i').className = 'fas fa-comments';
+                isOpen = false;
+            }
+        }
+    });
+    
+    // Track chat option clicks
+    chatOptions.addEventListener('click', (e) => {
+        const option = e.target.closest('.chat-option');
+        if (option) {
+            const type = option.classList.contains('whatsapp') ? 'WhatsApp' : 
+                        option.classList.contains('email') ? 'Email' : 'Phone';
+            
+            // Track with analytics
+            if (typeof gtag === 'function') {
+                gtag('event', 'contact_initiated', {
+                    'method': type,
+                    'content_group1': 'Contact Widget'
+                });
+            }
+            
+            // Close chat options
+            chatOptions.classList.remove('active');
+            chatBubble.querySelector('i').className = 'fas fa-comments';
+            isOpen = false;
+        }
+    });
+}
+
+// Initialize chat widget when DOM is ready
+document.addEventListener('DOMContentLoaded', initChatWidget);
+
 // Service Worker registration (for PWA capabilities)
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -1226,6 +1515,8 @@ if (typeof module !== 'undefined' && module.exports) {
         handleNavbarScroll,
         toggleMobileMenu,
         animateOnScroll,
-        handleFormSubmit
+        handleFormSubmit,
+        openGallery,
+        closeGallery
     };
 }
