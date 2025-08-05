@@ -81,6 +81,44 @@ This document tracks all major changes and updates to the website for easy refer
 - Quantifiable business benefits
 - Trust-building guarantees section
 
+### v1.2.0 - Comprehensive SEO Enhancement & Optimization (2025-08-05)
+**Git Tag:** `v1.2.0`
+**Commit:** `9ab560e`
+
+#### ✨ Major Features Added:
+- Enhanced structured data markup (Organization, WebSite, FAQ, Product schemas)
+- Comprehensive meta tag optimization with targeted keywords
+- Advanced Open Graph and Twitter Card implementation
+- Enhanced XML sitemap with image sitemap support
+- Progressive Web App manifest.json for better mobile experience
+
+#### 🔍 SEO Technical Improvements:
+- Canonical URLs and hreflang tags for international targeting
+- Enhanced robots.txt with bot-specific configurations
+- Optimized meta descriptions for higher CTR
+- Strategic internal linking throughout content
+- Rich snippets implementation for better SERP appearance
+
+#### 📊 Target Keywords Optimized:
+- "Indian agricultural exporter" (primary)
+- "B2B rice supplier" / "basmati rice wholesale"
+- "organic pulses export" / "premium spices supplier"
+- "FSSAI certified agricultural products"
+- "agricultural export India" / "wholesale agri products"
+
+#### 🎯 On-Page Optimizations:
+- Keyword-rich title tags and meta descriptions
+- Enhanced hero section content with internal links
+- Optimized product section descriptions
+- Strategic anchor text for internal navigation
+- Improved semantic HTML structure
+
+#### 🚀 Performance & UX:
+- PWA manifest for mobile app-like experience
+- Enhanced resource hints and preloading
+- Optimized font loading strategies
+- Improved Core Web Vitals preparation
+
 ---
 
 ## Rollback Commands
@@ -99,9 +137,9 @@ git checkout -b rollback-v1.0.0 v1.0.0
 
 ## Current Status
 - **Live URL**: https://amrudhya.github.io/amrudhyaharvest-clean-1754367047/
-- **Latest Version**: v1.1.0
+- **Latest Version**: v1.2.0
 - **Last Updated**: 2025-08-05
 
 ---
 
-*Next version will be v1.2.0 for any new features or v1.1.1 for small fixes*
+*Next version will be v1.3.0 for any new features or v1.2.1 for small fixes*
