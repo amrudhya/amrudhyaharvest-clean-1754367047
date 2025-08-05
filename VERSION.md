@@ -160,11 +160,35 @@ git checkout -b rollback-v1.0.0 v1.0.0
 
 ---
 
+### v1.2.2 - Clean Timeline Design (2025-08-05)
+**Git Tag:** `v1.2.2`
+**Commit:** `0db3da0`
+
+#### 🎨 Design Enhancement:
+- Transformed 3-column grid into horizontal timeline layout
+- Added numbered steps (01, 02, 03) for clear progression
+- Connected steps with subtle timeline lines
+- Maintained minimal aesthetic without overwhelming elements
+
+#### ✨ Timeline Features:
+- Clean numbered circles in brand green
+- Horizontal flow: Source → Process → Ship
+- Connecting lines between steps for visual continuity
+- Centered layout with balanced spacing
+
+#### 📱 Mobile Optimization:
+- Responsive design switches to vertical timeline on mobile
+- Vertical connecting lines for mobile layout
+- Proper spacing and touch-friendly interface
+- Maintains readability across all screen sizes
+
+---
+
 ## Current Status
 - **Live URL**: https://amrudhya.github.io/amrudhyaharvest-clean-1754367047/
-- **Latest Version**: v1.2.1
+- **Latest Version**: v1.2.2
 - **Last Updated**: 2025-08-05
 
 ---
 
-*Next version will be v1.3.0 for any new features or v1.2.2 for small fixes*
+*Next version will be v1.3.0 for any new features or v1.2.3 for small fixes*
