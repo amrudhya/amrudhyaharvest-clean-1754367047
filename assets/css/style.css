@@ -1118,49 +1118,89 @@ p {
 }
 
 /* ==========================================
-   Minimal Approach Section
+   Minimal Timeline Approach Section
    ========================================== */
 .business-model {
     padding: var(--section-padding);
     background: var(--warm-white);
 }
 
-.approach-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    max-width: 800px;
-    margin: 2rem auto 0;
+.approach-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 900px;
+    margin: 3rem auto 0;
+    padding: 0 2rem;
 }
 
-.approach-item {
+.timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: 2rem 1rem;
+    flex: 1;
+    max-width: 250px;
 }
 
-.approach-item h3 {
-    color: var(--primary-dark);  
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-green);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-semibold);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.step-content h3 {
+    color: var(--primary-dark);
     font-size: 1.2rem;
     font-weight: var(--font-weight-semibold);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
-.approach-item p {
+.step-content p {
     color: var(--text-light);
     font-size: 0.95rem;
     line-height: 1.6;
 }
 
+.timeline-line {
+    flex: 1;
+    height: 2px;
+    background: var(--border-light);
+    margin: 0 1rem;
+    position: relative;
+    top: -25px;
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
-    .approach-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        margin: 1rem auto 0;
+    .approach-timeline {
+        flex-direction: column;
+        padding: 0 1rem;
+        gap: 2rem;
     }
     
-    .approach-item {
-        padding: 1.5rem 0.5rem;
+    .timeline-line {
+        width: 2px;
+        height: 40px;
+        margin: 0;
+        top: 0;
+        background: var(--border-light);
+    }
+    
+    .timeline-step {
+        max-width: 100%;
+    }
+    
+    .step-content {
+        max-width: 280px;
     }
 }
 

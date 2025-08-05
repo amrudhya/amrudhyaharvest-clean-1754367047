@@ -135,11 +135,36 @@ git checkout v1.0.0
 git checkout -b rollback-v1.0.0 v1.0.0
 ```
 
+### v1.2.1 - Minimal Our Approach Redesign (2025-08-05)
+**Git Tag:** `v1.2.1`
+**Commit:** `1f84681`
+
+#### 🎨 Design Changes:
+- Completely simplified Our Approach section
+- Removed overwhelming timeline with 4 complex steps
+- Replaced with clean 3-column grid: Source → Process → Ship
+- Eliminated cluttered statistics badges and icons
+- Removed overly promotional guarantees section
+
+#### ✨ Minimal Theme Implementation:
+- Clean typography with simple headings
+- Reduced visual noise and distractions
+- Consistent spacing and minimal padding
+- Subtle background without gradients
+- Focus on essential information only
+
+#### 📱 Responsive Design:
+- Mobile-first approach with single column on mobile
+- Proper grid layout that scales across devices
+- Simplified touch-friendly interface
+
+---
+
 ## Current Status
 - **Live URL**: https://amrudhya.github.io/amrudhyaharvest-clean-1754367047/
-- **Latest Version**: v1.2.0
+- **Latest Version**: v1.2.1
 - **Last Updated**: 2025-08-05
 
 ---
 
-*Next version will be v1.3.0 for any new features or v1.2.1 for small fixes*
+*Next version will be v1.3.0 for any new features or v1.2.2 for small fixes*
