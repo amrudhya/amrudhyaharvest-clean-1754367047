@@ -1117,6 +1117,121 @@ p {
     margin-right: auto;
 }
 
+/* ==========================================
+   Process Timeline
+   ========================================== */
+.process-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    position: relative;
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    max-width: 250px;
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-number {
+    background: linear-gradient(135deg, var(--accent-green), var(--primary-green));
+    color: var(--white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-semibold);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(107, 166, 68, 0.3);
+}
+
+.timeline-icon {
+    background: var(--white);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border: 3px solid var(--light-gray);
+    transition: all var(--transition-medium);
+}
+
+.timeline-icon i {
+    font-size: 1.8rem;
+    color: var(--accent-green);
+}
+
+.timeline-item:hover .timeline-icon {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-green);
+}
+
+.timeline-content h3 {
+    color: var(--primary-dark);
+    font-size: 1.3rem;
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 0.8rem;
+}
+
+.timeline-content p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 220px;
+}
+
+.timeline-connector {
+    flex: 1;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-green), var(--primary-green));
+    margin: 0 1rem;
+    border-radius: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Mobile Responsive Timeline */
+@media (max-width: 768px) {
+    .process-timeline {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .timeline-connector {
+        width: 3px;
+        height: 40px;
+        margin: 0;
+        background: linear-gradient(180deg, var(--accent-green), var(--primary-green));
+    }
+    
+    .timeline-item {
+        max-width: 100%;
+    }
+    
+    .timeline-content {
+        max-width: 280px;
+    }
+    
+    .timeline-content p {
+        max-width: 100%;
+    }
+}
+
 .quality-features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
