@@ -39,9 +39,7 @@ AmrudhyaHarvest specializes in exporting premium quality agricultural products f
 ├── index.html              # Main homepage
 ├── about.html              # Company information  
 ├── products.html           # Product overview
-├── blog.html               # Blog/insights (placeholder)
-├── packaging.html          # Packaging solutions (placeholder)
-├── resources.html          # Export resources (placeholder)
+├── resources.html          # Export resources
 ├── thank-you.html          # Contact form success page
 ├── 404.html & 500.html     # Error pages
 ├── robots.txt & sitemap.xml # SEO files
