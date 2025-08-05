@@ -1,0 +1,50 @@
+{
+  "name": "AmrudhyaHarvest - Premium Indian Agricultural Exports",
+  "short_name": "AmrudhyaHarvest",
+  "description": "Premium B2B supplier of Indian agricultural products including basmati rice, organic pulses, spices & agri-inputs to 50+ countries worldwide.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2d5016",
+  "theme_color": "#2d5016",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["agriculture", "export", "food", "business"],
+  "shortcuts": [
+    {
+      "name": "View Products",
+      "short_name": "Products",
+      "description": "Browse our agricultural product catalog",
+      "url": "/products.html",
+      "icons": [
+        {
+          "src": "assets/images/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch for quotes and inquiries",
+      "url": "/#contact",
+      "icons": [
+        {
+          "src": "assets/images/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+}

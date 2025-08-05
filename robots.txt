@@ -1,16 +1,50 @@
+# Robots.txt for AmrudhyaHarvest - Premium Indian Agricultural Exports
+# Last updated: 2025-08-05
+
+# General crawling rules
 User-agent: *
 Allow: /
 
-# Disallow access to sensitive areas
-Disallow: /assets/
-
-# Allow specific asset types for SEO
+# Allow important files for SEO
 Allow: /assets/css/
 Allow: /assets/js/
 Allow: /assets/images/
+Allow: /sitemap.xml
+Allow: /robots.txt
 
-# Sitemap location
+# Disallow sensitive or unnecessary areas
+Disallow: /assets/downloads/
+Disallow: /*.pdf$
+Disallow: /private/
+Disallow: /temp/
+Disallow: /backup/
+
+# Specific bot configurations
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 3
+
+# Block problematic bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Sitemap locations
 Sitemap: https://amrudhyaharvest.com/sitemap.xml
 
-# Contact information
-# Contact: info@amrudhya.com
+# Contact information for webmaster
+# Contact: info@amrudhyaharvest.com
+# Website: https://amrudhyaharvest.com

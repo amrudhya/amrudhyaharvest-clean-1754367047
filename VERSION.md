@@ -58,6 +58,29 @@ This document tracks all major changes and updates to the website for easy refer
 - ✅ ISO 22000:2018
 - ✅ HACCP Compliant
 
+### v1.1.0 - Enhanced Our Approach Section (2025-08-05)
+**Git Tag:** `v1.1.0`
+**Commit:** `002c213`
+
+#### ✨ Features Added:
+- Redesigned timeline with stronger, benefit-focused headlines
+- Added quantifiable metrics and statistics (200+ farms, 99.9% purity)
+- Implemented visual stat badges (📍 15+ States, 🔍 100% Traceable)
+- Created approach summary with three key guarantees
+- Enhanced content positioning against competitors
+
+#### 🎨 UI/UX Improvements:
+- Added hover effects for timeline items
+- Improved mobile responsiveness for stat badges
+- Enhanced visual hierarchy with better typography
+- Added gradient backgrounds for statistics
+
+#### 📊 Content Strategy:
+- Competitive analysis-driven improvements
+- Risk mitigation messaging
+- Quantifiable business benefits
+- Trust-building guarantees section
+
 ---
 
 ## Rollback Commands
@@ -76,9 +99,9 @@ git checkout -b rollback-v1.0.0 v1.0.0
 
 ## Current Status
 - **Live URL**: https://amrudhya.github.io/amrudhyaharvest-clean-1754367047/
-- **Latest Version**: v1.0.2
+- **Latest Version**: v1.1.0
 - **Last Updated**: 2025-08-05
 
 ---
 
-*Next version will be v1.1.0 for any new features or v1.0.3 for small fixes*
+*Next version will be v1.2.0 for any new features or v1.1.1 for small fixes*
