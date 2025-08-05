@@ -106,17 +106,6 @@ function handleNavbarScroll() {
         navbar.classList.remove('scrolled');
     }
     
-    // Handle export badge visibility
-    const exportBadge = document.querySelector('.export-badge');
-    if (exportBadge) {
-        if (window.scrollY > 500) {
-            exportBadge.style.opacity = '0.8';
-            exportBadge.style.transform = 'translateX(-50%) scale(0.9)';
-        } else {
-            exportBadge.style.opacity = '1';
-            exportBadge.style.transform = 'translateX(-50%) scale(1)';
-        }
-    }
 }
 
 /**

@@ -36,7 +36,7 @@
    Critical Performance Optimizations
    ========================================== */
 /* Optimize will-change for GPU acceleration */
-.navbar, .export-badge, .whatsapp-float, .back-to-top {
+.navbar, .whatsapp-float, .back-to-top {
     will-change: transform;
 }
 
@@ -96,7 +96,7 @@ img[loading="lazy"].loaded {
 }
 
 /* Critical above-the-fold content */
-.hero, .navbar, .export-badge {
+.hero, .navbar {
     content-visibility: auto;
 }
 
@@ -336,41 +336,6 @@ p {
     transform: translateY(-1px);
 }
 
-/* ==========================================
-   Export Badge
-   ========================================== */
-.export-badge {
-    position: fixed;
-    top: 85px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, var(--accent-green), var(--primary-green));
-    color: var(--white);
-    padding: 0.6rem 1.5rem;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: var(--font-weight-medium);
-    z-index: 1001;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    animation: slideDown 0.3s ease;
-    border: 2px solid rgba(255,255,255,0.2);
-    transition: all var(--transition-medium);
-}
-
-.badge-content {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.export-badge:hover {
-    transform: translateX(-50%) scale(1.05);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}
-
-.badge-content i {
-    animation: pulse 3s infinite; /* Slower animation for better performance */
-}
 
 @keyframes slideDown {
     from {
@@ -519,7 +484,7 @@ p {
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, var(--warm-white) 0%, var(--off-white) 100%);
-    padding-top: 120px; /* Account for navbar (72px) + export badge (40px) + extra spacing */
+    padding-top: 120px; /* Account for navbar (72px) + extra spacing */
 }
 
 .hero-content {
@@ -2089,14 +2054,6 @@ p {
         --container-padding: 0 1rem;
     }
     
-    .export-badge {
-        font-size: 0.75rem;
-        padding: 0.5rem 1.2rem;
-        top: 80px;
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-    }
     
     .nav-menu {
         position: fixed;
