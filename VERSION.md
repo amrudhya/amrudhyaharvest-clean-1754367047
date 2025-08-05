@@ -43,6 +43,21 @@ This document tracks all major changes and updates to the website for easy refer
 - ✅ Thank You (thank-you.html)
 - ✅ Error pages (404.html, 500.html)
 
+### v1.0.2 - Fix Duplicate APEDA Certification (2025-08-05)
+**Git Tag:** `v1.0.2` 
+**Commit:** `617d27f`
+
+#### 🔧 Bug Fixes:
+- Fixed duplicate APEDA certification in Quality Assurance section
+- Replaced second APEDA with ISO 22000:2018 certification
+- Improved certification diversity and credibility
+
+#### 📋 Current Certifications:
+- ✅ FSSAI Certified
+- ✅ APEDA Registered  
+- ✅ ISO 22000:2018
+- ✅ HACCP Compliant
+
 ---
 
 ## Rollback Commands
@@ -61,9 +76,9 @@ git checkout -b rollback-v1.0.0 v1.0.0
 
 ## Current Status
 - **Live URL**: https://amrudhya.github.io/amrudhyaharvest-clean-1754367047/
-- **Latest Version**: v1.0.0
+- **Latest Version**: v1.0.2
 - **Last Updated**: 2025-08-05
 
 ---
 
-*Next version will be v1.1.0 for any new features or v1.0.1 for small fixes*
+*Next version will be v1.1.0 for any new features or v1.0.3 for small fixes*
