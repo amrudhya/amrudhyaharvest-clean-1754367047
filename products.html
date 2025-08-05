@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Indian Agricultural Products - Rice, Pulses, Spices & Natural Agri-Inputs. Export quality products from trusted Indian suppliers.">
+    <meta name="keywords" content="Indian agricultural products, export rice, premium pulses, Indian spices, organic agri-inputs, Basmati rice export">
+    <title>Products - Premium Indian Agricultural Exports | Amrudhya Harvests</title>
+    
+    <!-- Critical resource preconnections for Core Web Vitals -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Optimized font loading for LCP -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap"></noscript>
+    
+    <!-- Critical CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Non-critical CSS - lazy loaded -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://amrudhyaharvest.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Products",
+                "item": "https://amrudhyaharvest.com/products.html"
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Skip to Main Content Link for Screen Readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.svg" alt="AmrudhyaHarvest - Premium Agricultural Exports" class="logo-img">
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu" role="navigation" aria-label="Main navigation">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link active">Products</a>
+                <a href="packaging.html" class="nav-link">Packaging</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
+                <a href="blog.html" class="nav-link">Blog/Insights</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="#contact" class="nav-link cta-btn">Contact</a>
+            </div>
+            
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Export Badge -->
+    <div class="export-badge">
+        🌾 Premium Indian Agricultural Exports
+    </div>
+
+    <!-- Sticky Catalogue CTA -->
+    <div class="catalogue-cta-sticky" id="catalogue-cta">
+        <div class="cta-content">
+            <div class="cta-left">
+                <div class="cta-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <div class="cta-text">
+                    <h3>Download Complete Product Catalogue</h3>
+                    <p>Get instant access to our comprehensive export catalogue with pricing and specifications</p>
+                </div>
+            </div>
+            <button class="cta-button" onclick="openCatalogueModal()">
+                <i class="fas fa-download"></i>
+                Download Free PDF
+            </button>
+        </div>
+        <button class="cta-close" onclick="closeCatalogueModal()" aria-label="Close">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Catalogue Download Modal -->
+    <div class="catalogue-modal" id="catalogue-modal">
+        <div class="modal-overlay" onclick="closeCatalogueModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Download Complete Product Catalogue</h2>
+                <button class="modal-close" onclick="closeCatalogueModal()" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <div class="catalogue-preview">
+                        <div class="pdf-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>Amrudhya Harvests Product Catalogue</h3>
+                        <ul class="catalogue-features">
+                            <li><i class="fas fa-check"></i> Complete product specifications</li>
+                            <li><i class="fas fa-check"></i> Competitive export pricing</li>
+                            <li><i class="fas fa-check"></i> Packaging options</li>
+                            <li><i class="fas fa-check"></i> Quality certifications</li>
+                            <li><i class="fas fa-check"></i> Shipping information</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    <form id="catalogue-form" onsubmit="submitCatalogueForm(event)">
+                        <div class="form-group">
+                            <label for="lead-email" class="required">Email Address</label>
+                            <input type="email" id="lead-email" name="email" required aria-required="true" aria-describedby="email-help" placeholder="your@company.com" autocomplete="email">
+                            <div id="email-help" class="sr-only">Enter your business email address to receive the catalogue</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lead-company" class="required">Company Name</label>
+                            <input type="text" id="lead-company" name="company" required aria-required="true" aria-describedby="company-help" placeholder="Your Company Name" autocomplete="organization">
+                            <div id="company-help" class="sr-only">Enter your company or organization name</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lead-country" class="required">Country</label>
+                            <select id="lead-country" name="country" required aria-required="true" aria-describedby="country-help" autocomplete="country">
+                                <option value="">Select your country</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="GB">United Kingdom</option>
+                                <option value="AU">Australia</option>
+                                <option value="NZ">New Zealand</option>
+                                <option value="AE">United Arab Emirates</option>
+                                <option value="SA">Saudi Arabia</option>
+                                <option value="QA">Qatar</option>
+                                <option value="KW">Kuwait</option>
+                                <option value="OM">Oman</option>
+                                <option value="BH">Bahrain</option>
+                                <option value="SG">Singapore</option>
+                                <option value="MY">Malaysia</option>
+                                <option value="TH">Thailand</option>
+                                <option value="VN">Vietnam</option>
+                                <option value="ID">Indonesia</option>
+                                <option value="PH">Philippines</option>
+                                <option value="JP">Japan</option>
+                                <option value="KR">South Korea</option>
+                                <option value="CN">China</option>
+                                <option value="HK">Hong Kong</option>
+                                <option value="TW">Taiwan</option>
+                                <option value="BD">Bangladesh</option>
+                                <option value="LK">Sri Lanka</option>
+                                <option value="NP">Nepal</option>
+                                <option value="PK">Pakistan</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div id="country-help" class="sr-only">Select your country for shipping and regulatory purposes</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lead-phone">Phone Number (Optional)</label>
+                            <input type="tel" id="lead-phone" name="phone" aria-describedby="phone-help" placeholder="+1234567890" autocomplete="tel">
+                            <div id="phone-help" class="sr-only">Optional: Include country code for international numbers</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" aria-describedby="form-note">
+                            <i class="fas fa-download" aria-hidden="true"></i>
+                            Download Catalogue Now
+                        </button>
+                        <p id="form-note" class="form-note">By downloading, you agree to receive updates about our products and services. We respect your privacy.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="current">Products</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Products Hero -->
+    <main id="main-content">
+    <section class="page-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Premium Agricultural Products</h1>
+                <p class="hero-subtitle">From the fertile lands of India to global markets - discover our comprehensive range of high-quality agricultural products</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories Overview -->
+    <section class="product-categories-overview">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Product Categories</h2>
+                <p>Four core categories of premium Indian agricultural products, each carefully sourced and quality-tested</p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-image">
+                        <i class="fas fa-wheat-awn"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Premium Rice</h3>
+                        <p>Aromatic and non-aromatic rice varieties from India's premier growing regions</p>
+                        <ul class="category-highlights">
+                            <li>Basmati 1121</li>
+                            <li>Pusa Basmati</li>
+                            <li>Sona Masoori</li>
+                            <li>Shella Rice</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Request Quote →</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-image">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Pulses & Grains</h3>
+                        <p>High-protein legumes and whole grains for nutritious global markets</p>
+                        <ul class="category-highlights">
+                            <li>Moong Dal</li>
+                            <li>Chana Dal</li>
+                            <li>Whole Grains</li>
+                            <li>Red Lentils</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Request Quote →</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-image">
+                        <i class="fas fa-pepper-hot"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Spices & Herbs</h3>
+                        <p>Aromatic spices and herbal products that retain natural oils and flavors</p>
+                        <ul class="category-highlights">
+                            <li>Turmeric</li>
+                            <li>Cumin</li>
+                            <li>Dry Moringa</li>
+                            <li>Black Pepper</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Request Quote →</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-image">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Natural Agri-Inputs</h3>
+                        <p>Organic agricultural inputs for sustainable farming practices</p>
+                        <ul class="category-highlights">
+                            <li>Neem Powder</li>
+                            <li>Vermicompost</li>
+                            <li>Seaweed Granules</li>
+                            <li>Bio-Fertilizers</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline">Request Quote →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Products</h2>
+                <p>Our flagship products that represent the best of Indian agriculture</p>
+            </div>
+            
+            <div class="featured-grid">
+                <div class="featured-product">
+                    <div class="product-badge">Flagship</div>
+                    <div class="product-image">
+                        <i class="fas fa-wheat-awn"></i>
+                    </div>
+                    <h3>Basmati 1121</h3>
+                    <p>Premium aromatic long-grain rice, aged to perfection for superior taste and aroma</p>
+                    <div class="product-specs">
+                        <span class="spec">Export Quality</span>
+                        <span class="spec">1-2 Years Aged</span>
+                        <span class="spec">Lab Tested</span>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">Request Quote</a>
+                </div>
+                
+                <div class="featured-product">
+                    <div class="product-badge">Popular</div>
+                    <div class="product-image">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                    <h3>Moong Dal</h3>
+                    <p>High-protein yellow lentils, perfect for nutritious meals and commercial use</p>
+                    <div class="product-specs">
+                        <span class="spec">High Protein</span>
+                        <span class="spec">Machine Cleaned</span>
+                        <span class="spec">Export Grade</span>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">Request Quote</a>
+                </div>
+                
+                <div class="featured-product">
+                    <div class="product-badge">Premium</div>
+                    <div class="product-image">
+                        <i class="fas fa-pepper-hot"></i>
+                    </div>
+                    <h3>Organic Turmeric</h3>
+                    <p>Pure turmeric powder with high curcumin content and vibrant color</p>
+                    <div class="product-specs">
+                        <span class="spec">Organic Certified</span>
+                        <span class="spec">High Curcumin</span>
+                        <span class="spec">Natural Color</span>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">Request Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Assurance -->
+    <section class="quality-assurance">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quality Assurance</h2>
+                <p>Every product meets international standards through rigorous testing and quality control</p>
+            </div>
+            
+            <div class="quality-features">
+                <div class="quality-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>FSSAI & APEDA Certified</h3>
+                    <p>All products comply with Indian food safety standards and export regulations</p>
+                </div>
+                
+                <div class="quality-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Lab Tested</h3>
+                    <p>Third-party laboratory testing ensures purity, quality, and safety standards</p>
+                </div>
+                
+                <div class="quality-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Traceability</h3>
+                    <p>Complete documentation from source to shipment for full transparency</p>
+                </div>
+                
+                <div class="quality-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Organic Options</h3>
+                    <p>NPOP, USDA Organic, Halal, and Kosher certifications available on request</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="products-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Need Custom Requirements?</h2>
+                <p>We offer flexible packaging, private labeling, and custom specifications to meet your exact needs.</p>
+                <div class="cta-buttons">
+                    <a href="packaging.html" class="btn btn-primary">Explore Packaging Options</a>
+                    <a href="#contact" class="btn btn-secondary">Request Custom Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.svg" alt="AmrudhyaHarvest">
+                        <p>Harvesting India's Purity, Shipping to the World</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="packaging.html">Packaging</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="#rice">Rice</a></li>
+                        <li><a href="#pulses">Pulses</a></li>
+                        <li><a href="#spices">Spices</a></li>
+                        <li><a href="#agri-inputs">Agri-Inputs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +91 9106516439</p>
+                    <p><i class="fas fa-envelope"></i> info@amrudhyaharvest.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Amrudhya Harvests. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    
+    <!-- Catalogue CTA JavaScript -->
+    <script>
+        // Show/hide sticky CTA based on scroll position
+        function handleCatalogueSticky() {
+            const cta = document.getElementById('catalogue-cta');
+            const scrollPosition = window.scrollY;
+            
+            if (scrollPosition > 300) {
+                cta.classList.add('visible');
+            } else {
+                cta.classList.remove('visible');
+            }
+        }
+
+        // Open catalogue modal
+        function openCatalogueModal() {
+            const modal = document.getElementById('catalogue-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Track modal open event
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'catalogue_modal_open', {
+                    event_category: 'Lead Generation',
+                    event_label: 'Catalogue Modal Opened'
+                });
+            }
+        }
+
+        // Close catalogue modal
+        function closeCatalogueModal() {
+            const modal = document.getElementById('catalogue-modal');
+            const cta = document.getElementById('catalogue-cta');
+            modal.classList.remove('active');
+            cta.classList.add('dismissed');
+            document.body.style.overflow = '';
+            
+            // Set a cookie to remember dismissal for 7 days
+            document.cookie = 'catalogue_cta_dismissed=true; expires=' + new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
+        }
+
+        // Submit catalogue form
+        async function submitCatalogueForm(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            const submitButton = form.querySelector('button[type="submit"]');
+            
+            // Disable submit button and show loading
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            
+            try {
+                // Collect form data
+                const leadData = {
+                    email: formData.get('email'),
+                    company: formData.get('company'),
+                    country: formData.get('country'),
+                    phone: formData.get('phone') || '',
+                    timestamp: new Date().toISOString(),
+                    source: 'catalogue_download',
+                    page: 'products',
+                    user_agent: navigator.userAgent,
+                    referrer: document.referrer
+                };
+                
+                // Track the lead generation event
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'generate_lead', {
+                        event_category: 'Lead Generation',
+                        event_label: 'Catalogue Download - Products Page',
+                        value: 1,
+                        custom_parameters: {
+                            company: leadData.company,
+                            country: leadData.country,
+                            source: 'catalogue_download',
+                            page: 'products'
+                        }
+                    });
+                }
+                
+                // Store lead data locally
+                localStorage.setItem('catalogue_lead', JSON.stringify(leadData));
+                
+                // Redirect to thank you page
+                window.location.href = 'thank-you.html';
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                
+                // Graceful fallback
+                const leadData = {
+                    email: formData.get('email'),
+                    company: formData.get('company'),
+                    country: formData.get('country'),
+                    phone: formData.get('phone') || '',
+                    timestamp: new Date().toISOString(),
+                    source: 'catalogue_download',
+                    page: 'products'
+                };
+                localStorage.setItem('catalogue_lead', JSON.stringify(leadData));
+                
+                // Track offline conversion
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'generate_lead', {
+                        event_category: 'Lead Generation',
+                        event_label: 'Catalogue Download (Offline) - Products',
+                        value: 1
+                    });
+                }
+                
+                window.location.href = 'thank-you.html';
+            }
+        }
+
+        // Check if CTA was previously dismissed
+        function checkCTADismissal() {
+            const dismissed = document.cookie.includes('catalogue_cta_dismissed=true');
+            if (dismissed) {
+                document.getElementById('catalogue-cta').classList.add('dismissed');
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkCTADismissal();
+            window.addEventListener('scroll', handleCatalogueSticky);
+            
+            // Show CTA after 5 seconds for better UX
+            setTimeout(() => {
+                if (!document.cookie.includes('catalogue_cta_dismissed=true')) {
+                    handleCatalogueSticky();
+                }
+            }, 5000);
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeCatalogueModal();
+            }
+        });
+    </script>
+</body>
+</html>

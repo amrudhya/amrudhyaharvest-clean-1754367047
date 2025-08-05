@@ -34,9 +34,29 @@ AmrudhyaHarvest specializes in exporting premium quality agricultural products f
 - **Email**: info@amrudhya.com
 - **WhatsApp**: +91 9106516439
 
+### Project Structure
+```
+├── index.html              # Main homepage
+├── about.html              # Company information  
+├── products.html           # Product overview
+├── blog.html               # Blog/insights (placeholder)
+├── packaging.html          # Packaging solutions (placeholder)
+├── resources.html          # Export resources (placeholder)
+├── thank-you.html          # Contact form success page
+├── 404.html & 500.html     # Error pages
+├── robots.txt & sitemap.xml # SEO files
+├── CNAME & _config.yml     # GitHub Pages config
+├── assets/
+│   ├── css/style.css       # Main stylesheet
+│   ├── js/script.js        # Interactive functionality
+│   └── images/
+│       ├── logo.svg        # Company logo
+│       └── favicon.svg     # Site favicon
+```
+
 ### Technology Stack
 - HTML5, CSS3, JavaScript
-- Formspree for contact forms
+- Formspree for contact forms  
 - GitHub Pages hosting
 - Performance optimized with async loading
 

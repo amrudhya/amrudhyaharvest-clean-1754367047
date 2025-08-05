@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="google-site-verification" content="o7yqRlJrs0gQiAcj1DuvkqGWEj9VizNKf24FzdlRdLU" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AmrudhyaHarvest - Exporting premium Indian agricultural products worldwide. Quality grains, pulses, spices, and oils from India to global markets.">
@@ -27,6 +28,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Font display fallback for immediate text rendering -->
+    <style>
+        @font-face {
+            font-family: 'General Sans Fallback';
+            src: local('system-ui'), local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI'), local('sans-serif');
+            font-display: swap;
+            ascent-override: 105%;
+            descent-override: 35%;
+            line-gap-override: 10%;
+        }
+    </style>
     
     <!-- Performance optimizations -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -155,6 +168,8 @@
     </script>
 </head>
 <body>
+    <!-- Skip to Main Content Link for Screen Readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
@@ -164,13 +179,14 @@
             </div>
             
             <div class="nav-menu" id="nav-menu" role="navigation" aria-label="Main navigation">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#products" class="nav-link">Products</a>
-                <a href="#global-presence" class="nav-link">Global Reach</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="packaging.html" class="nav-link">Packaging</a>
                 <a href="#certifications" class="nav-link">Certifications</a>
-                <a href="#contact" class="nav-link">Contact</a>
-                <a href="#contact" class="nav-link cta-btn">Get Quote</a>
+                <a href="blog.html" class="nav-link">Blog/Insights</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="#contact" class="nav-link cta-btn">Contact</a>
             </div>
             
             <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
@@ -184,12 +200,174 @@
     <!-- Global Export Badge -->
     <div class="export-badge">
         <div class="badge-content">
-            <i class="fas fa-globe"></i>
+            <i class="fas fa-globe" aria-hidden="true"></i>
             <span>Exporting to 50+ Countries</span>
         </div>
     </div>
 
+    <!-- Sticky Catalogue CTA -->
+    <div class="catalogue-cta-sticky" id="catalogue-cta">
+        <div class="cta-content">
+            <div class="cta-left">
+                <div class="cta-icon">
+                    <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                </div>
+                <div class="cta-text">
+                    <h3>Download Complete Product Catalogue</h3>
+                    <p>Get instant access to our comprehensive export catalogue with pricing and specifications</p>
+                </div>
+            </div>
+            <button class="cta-button" onclick="openCatalogueModal()" aria-label="Open dialogue to download product catalogue">
+                <i class="fas fa-download" aria-hidden="true"></i>
+                Download Free PDF
+            </button>
+        </div>
+        <button class="cta-close" onclick="closeCatalogueModal()" aria-label="Close catalogue download offer">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <!-- Catalogue Download Modal -->
+    <div class="catalogue-modal" id="catalogue-modal">
+        <div class="modal-overlay" onclick="closeCatalogueModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Download Complete Product Catalogue</h2>
+                <button class="modal-close" onclick="closeCatalogueModal()" aria-label="Close catalogue download modal">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <div class="catalogue-preview">
+                        <div class="pdf-icon">
+                            <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                        </div>
+                        <h3>Amrudhya Harvests Product Catalogue</h3>
+                        <ul class="catalogue-features">
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Complete product specifications</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Competitive export pricing</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Packaging options</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Quality certifications</li>
+                            <li><i class="fas fa-check" aria-hidden="true"></i> Shipping information</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    <form id="catalogue-form" onsubmit="submitCatalogueForm(event)">
+                        <div class="form-group">
+                            <label for="lead-email" class="required">Email Address</label>
+                            <input type="email" id="lead-email" name="email" required aria-required="true" aria-describedby="email-help" placeholder="your@company.com" autocomplete="email">
+                            <div id="email-help" class="sr-only">Enter your business email address to receive the catalogue</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lead-company" class="required">Company Name</label>
+                            <input type="text" id="lead-company" name="company" required aria-required="true" aria-describedby="company-help" placeholder="Your Company Name" autocomplete="organization">
+                            <div id="company-help" class="sr-only">Enter your company or organization name</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lead-country" class="required">Country</label>
+                            <select id="lead-country" name="country" required aria-required="true" aria-describedby="country-help" autocomplete="country">
+                                <option value="">Select your country</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="GB">United Kingdom</option>
+                                <option value="AU">Australia</option>
+                                <option value="NZ">New Zealand</option>
+                                <option value="AE">United Arab Emirates</option>
+                                <option value="SA">Saudi Arabia</option>
+                                <option value="QA">Qatar</option>
+                                <option value="KW">Kuwait</option>
+                                <option value="OM">Oman</option>
+                                <option value="BH">Bahrain</option>
+                                <option value="SG">Singapore</option>
+                                <option value="MY">Malaysia</option>
+                                <option value="TH">Thailand</option>
+                                <option value="VN">Vietnam</option>
+                                <option value="ID">Indonesia</option>
+                                <option value="PH">Philippines</option>
+                                <option value="JP">Japan</option>
+                                <option value="KR">South Korea</option>
+                                <option value="CN">China</option>
+                                <option value="HK">Hong Kong</option>
+                                <option value="TW">Taiwan</option>
+                                <option value="BD">Bangladesh</option>
+                                <option value="LK">Sri Lanka</option>
+                                <option value="NP">Nepal</option>
+                                <option value="PK">Pakistan</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="IR">Iran</option>
+                                <option value="IQ">Iraq</option>
+                                <option value="JO">Jordan</option>
+                                <option value="LB">Lebanon</option>
+                                <option value="SY">Syria</option>
+                                <option value="TR">Turkey</option>
+                                <option value="EG">Egypt</option>
+                                <option value="MA">Morocco</option>
+                                <option value="TN">Tunisia</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="LY">Libya</option>
+                                <option value="SD">Sudan</option>
+                                <option value="ET">Ethiopia</option>
+                                <option value="KE">Kenya</option>
+                                <option value="UG">Uganda</option>
+                                <option value="TZ">Tanzania</option>
+                                <option value="ZA">South Africa</option>
+                                <option value="NG">Nigeria</option>
+                                <option value="GH">Ghana</option>
+                                <option value="CI">Côte d'Ivoire</option>
+                                <option value="SN">Senegal</option>
+                                <option value="ML">Mali</option>
+                                <option value="BF">Burkina Faso</option>
+                                <option value="NE">Niger</option>
+                                <option value="TD">Chad</option>
+                                <option value="CM">Cameroon</option>
+                                <option value="CF">Central African Republic</option>
+                                <option value="CG">Congo</option>
+                                <option value="CD">Democratic Republic of Congo</option>
+                                <option value="AO">Angola</option>
+                                <option value="ZM">Zambia</option>
+                                <option value="ZW">Zimbabwe</option>
+                                <option value="BW">Botswana</option>
+                                <option value="NA">Namibia</option>
+                                <option value="MZ">Mozambique</option>
+                                <option value="MG">Madagascar</option>
+                                <option value="MU">Mauritius</option>
+                                <option value="SC">Seychelles</option>
+                                <option value="RE">Réunion</option>
+                                <option value="YT">Mayotte</option>
+                                <option value="KM">Comoros</option>
+                                <option value="DJ">Djibouti</option>
+                                <option value="SO">Somalia</option>
+                                <option value="ER">Eritrea</option>
+                                <option value="SS">South Sudan</option>
+                                <option value="RW">Rwanda</option>
+                                <option value="BI">Burundi</option>
+                                <option value="MW">Malawi</option>
+                                <option value="SZ">Eswatini</option>
+                                <option value="LS">Lesotho</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div id="country-help" class="sr-only">Select your country for shipping and regulatory purposes</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lead-phone">Phone Number (Optional)</label>
+                            <input type="tel" id="lead-phone" name="phone" aria-describedby="phone-help" placeholder="+1234567890" autocomplete="tel">
+                            <div id="phone-help" class="sr-only">Optional: Include country code for international numbers</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" aria-describedby="form-note">
+                            <i class="fas fa-download" aria-hidden="true"></i>
+                            Download Catalogue Now
+                        </button>
+                        <p id="form-note" class="form-note">By downloading, you agree to receive updates about our products and services. We respect your privacy.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
+    <main id="main-content">
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="container">
@@ -262,36 +440,36 @@
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">About AmrudhyaHarvest</h2>
-                <p class="section-subtitle">Premium Indian agricultural exports connecting farms to global markets</p>
+                <h2 class="section-title">About Amrudhya Harvests</h2>
+                <p class="section-subtitle">Connecting India's purity with global markets through trusted, quality-driven trade</p>
             </div>
             
             <div class="about-content">
                 <div class="about-text">
                     <div class="about-card">
                         <h3>Our Mission</h3>
-                        <p>AmrudhyaHarvest is dedicated to connecting India's finest agricultural produce with global markets. We specialize in exporting premium quality pulses, rice, spices, and oils, ensuring that the authentic taste and nutrition of Indian agriculture reaches customers worldwide.</p>
+                        <p>Amrudhya Harvests connects India's pure, natural agri-products with both domestic and global buyers through trusted, quality-driven trade. We blend Indian authenticity with global standards.</p>
                     </div>
                     
                     <div class="about-card">
-                        <h3>Global Reach</h3>
-                        <p>Though we are a new company, we have established networks that enable us to supply to over 50 countries. Our commitment to quality, competitive pricing, and reliable delivery makes us a trusted partner for international buyers seeking premium Indian agricultural products.</p>
+                        <h3>Our Vision 2030</h3>
+                        <p>To become a trusted brand for rice, pulses, herbs, and spices in 30+ countries across India and internationally, delivering consistently high-quality products with ethical sourcing.</p>
                     </div>
                     
                     <div class="about-card">
-                        <h3>Quality Promise</h3>
-                        <p>Every product we export meets international quality standards. From source to shipment, we maintain strict quality control processes, ensuring that our customers receive only the finest agricultural products that India has to offer.</p>
+                        <h3>What Sets Us Apart</h3>
+                        <p>We are a problem-solving company offering pure, lab-tested products with flexible supply and custom solutions — without owning manufacturing, yet maintaining full quality control.</p>
                     </div>
                 </div>
                 
                 <div class="about-stats">
                     <div class="stat-item">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Countries We Can Supply To</div>
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Target Countries by 2030</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">100+</div>
-                        <div class="stat-label">Premium Products</div>
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Core Product Categories</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">24*7</div>
@@ -318,11 +496,11 @@
             <div class="product-categories">
                 <div class="category-tabs">
                     <button class="tab-btn active" data-category="all">All Products</button>
-                    <button class="tab-btn" data-category="pulses">Pulses</button>
                     <button class="tab-btn" data-category="rice">Rice</button>
-                    <button class="tab-btn" data-category="spices">Spices</button>
-                    <button class="tab-btn" data-category="oils">Oils</button>
-                    <button class="tab-btn" data-category="custom">Custom Packs</button>
+                    <button class="tab-btn" data-category="pulses">Pulses & Grains</button>
+                    <button class="tab-btn" data-category="spices">Spices & Herbs</button>
+                    <button class="tab-btn" data-category="agri-inputs">Natural Agri-Inputs</button>
+                    <button class="tab-btn" data-category="custom">Custom Solutions</button>
                 </div>
                 
                 <div class="products-grid">
@@ -332,9 +510,12 @@
                         <div class="product-icon">
                             <i class="fas fa-circle"></i>
                         </div>
-                        <h3 class="product-title">Premium Pulses</h3>
-                        <p class="product-description">High-protein legumes including premium lentils, chickpeas, black gram, and specialty varieties sourced from India's finest pulse-growing regions.</p>
+                        <h3 class="product-title">Pulses & Grains</h3>
+                        <p class="product-description">High-protein legumes and whole grains including premium lentils, chickpeas, black gram, and specialty varieties sourced from India's finest pulse-growing regions.</p>
                         <div class="product-varieties">
+                            <span class="variety">Moong Dal</span>
+                            <span class="variety">Chana Dal</span>
+                            <span class="variety">Whole Grains</span>
                             <span class="variety">Red Lentils</span>
                             <span class="variety">Chickpeas</span>
                             <span class="variety">Black Gram</span>
@@ -367,13 +548,13 @@
                             <i class="fas fa-wheat-awn"></i>
                         </div>
                         <h3 class="product-title">Premium Rice Varieties</h3>
-                        <p class="product-description">Aromatic Basmati and premium non-Basmati rice varieties, aged to perfection for superior taste, aroma, and cooking quality that meets international standards.</p>
+                        <p class="product-description">High-quality aromatic and non-aromatic rice varieties sourced from India's premier rice-growing regions, aged and processed to meet international quality standards.</p>
                         <div class="product-varieties">
-                            <span class="variety">Basmati 1121</span>
+                            <span class="variety">Sona Masoori</span>
+                            <span class="variety">1121 Basmati</span>
                             <span class="variety">Pusa Basmati</span>
-                            <span class="variety">Jasmine Rice</span>
-                            <span class="variety">Brown Rice</span>
-                            <span class="variety">Organic Rice</span>
+                            <span class="variety">Shella Rice</span>
+                            <span class="variety">Organic Varieties</span>
                         </div>
                         <div class="product-specs">
                             <div class="spec">
@@ -400,14 +581,14 @@
                         <div class="product-icon">
                             <i class="fas fa-pepper-hot"></i>
                         </div>
-                        <h3 class="product-title">Authentic Indian Spices</h3>
-                        <p class="product-description">Aromatic whole and ground spices that retain their natural oils and flavors, sourced from India's premier spice-growing regions with traditional processing methods.</p>
+                        <h3 class="product-title">Spices & Herbs</h3>
+                        <p class="product-description">Aromatic whole and ground spices that retain their natural oils and flavors, plus herbal products sourced from India's premier spice-growing regions with traditional processing methods.</p>
                         <div class="product-varieties">
+                            <span class="variety">Turmeric</span>
+                            <span class="variety">Cumin</span>
+                            <span class="variety">Dry Moringa</span>
                             <span class="variety">Cardamom</span>
                             <span class="variety">Black Pepper</span>
-                            <span class="variety">Turmeric</span>
-                            <span class="variety">Coriander</span>
-                            <span class="variety">Cumin</span>
                         </div>
                         <div class="product-specs">
                             <div class="spec">
@@ -428,34 +609,34 @@
                         </div>
                     </div>
                     
-                    <!-- Oils Category -->
-                    <div class="product-card" data-category="oils">
-                        <div class="product-badge">Cold-Pressed</div>
+                    <!-- Natural Agri-Inputs Category -->
+                    <div class="product-card" data-category="agri-inputs">
+                        <div class="product-badge">Organic</div>
                         <div class="product-icon">
-                            <i class="fas fa-oil-can"></i>
+                            <i class="fas fa-leaf"></i>
                         </div>
-                        <h3 class="product-title">Cold-Pressed Natural Oils</h3>
-                        <p class="product-description">Pure, unrefined oils extracted using traditional cold-press methods to preserve maximum nutritional value, natural flavor, and therapeutic properties.</p>
+                        <h3 class="product-title">Natural Agri-Inputs</h3>
+                        <p class="product-description">Organic and natural agricultural inputs including bio-fertilizers and natural pest control solutions to support sustainable farming practices.</p>
                         <div class="product-varieties">
-                            <span class="variety">Coconut Oil</span>
-                            <span class="variety">Mustard Oil</span>
-                            <span class="variety">Sesame Oil</span>
-                            <span class="variety">Groundnut Oil</span>
-                            <span class="variety">Sunflower Oil</span>
+                            <span class="variety">Neem Powder</span>
+                            <span class="variety">Vermicompost</span>
+                            <span class="variety">Seaweed Granules</span>
+                            <span class="variety">Bio-Fertilizers</span>
+                            <span class="variety">Organic Manure</span>
                         </div>
                         <div class="product-specs">
                             <div class="spec">
-                                <i class="fas fa-snowflake"></i>
-                                <span>Cold-pressed below 60°C</span>
+                                <i class="fas fa-seedling"></i>
+                                <span>100% Organic</span>
                             </div>
                             <div class="spec">
                                 <i class="fas fa-flask"></i>
-                                <span>Lab tested purity</span>
+                                <span>Lab tested quality</span>
                             </div>
                         </div>
                         <div class="product-actions">
                             <a href="#contact" class="btn btn-primary">Request Quote</a>
-                            <button class="product-gallery-btn" onclick="openGallery('oils')">
+                            <button class="product-gallery-btn" onclick="openGallery('agri-inputs')">
                                 <i class="fas fa-images"></i>
                                 <span>View Gallery</span>
                             </button>
@@ -494,6 +675,53 @@
                                 <span>View Gallery</span>
                             </button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Model Section -->
+    <section id="business-model" class="business-model">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Our Approach</div>
+                <h2 class="section-title">Business Model & Strategy</h2>
+                <p class="section-subtitle">Understanding how we operate to deliver quality agricultural products with trust and transparency</p>
+            </div>
+            
+            <div class="business-content">
+                <div class="business-grid">
+                    <div class="business-card">
+                        <div class="card-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Trading Model</h3>
+                        <p>Lean trading company sourcing from certified suppliers and packing under our brand for global distribution.</p>
+                    </div>
+                    
+                    <div class="business-card">
+                        <div class="card-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h3>Global Reach</h3>
+                        <p>Serving both domestic and international markets across Asia, Middle East, Africa with expansion plans to Europe and North America.</p>
+                    </div>
+                    
+                    <div class="business-card">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>B2B Focus</h3>
+                        <p>Direct sales to importers, wholesalers, distributors, and bulk buyers seeking quality, custom branding, and reliable delivery.</p>
+                    </div>
+                    
+                    <div class="business-card">
+                        <div class="card-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h3>Custom Solutions</h3>
+                        <p>White-label and custom-branded solutions with flexible packaging, labeling, and export-ready compliance options.</p>
                     </div>
                 </div>
             </div>
@@ -539,16 +767,16 @@
                                 <i class="fas fa-shield-alt"></i>
                             </div>
                         </div>
-                        <h3>ISO 22000:2018</h3>
-                        <p class="cert-description">International food safety management system standard guaranteeing safe food throughout the entire supply chain from farm to fork.</p>
+                        <h3>APEDA Registered</h3>
+                        <p class="cert-description">Agricultural and Processed Food Products Export Development Authority registration for agricultural exports, enabling international trade compliance.</p>
                         <div class="cert-details">
                             <div class="cert-validity">
                                 <i class="fas fa-calendar-check"></i>
-                                <span>Valid Until 2026</span>
+                                <span>Active Registration</span>
                             </div>
                             <div class="cert-number">
                                 <i class="fas fa-id-badge"></i>
-                                <span>Cert No: ISO-22000-2024</span>
+                                <span>APEDA Registered</span>
                             </div>
                         </div>
                     </div>
@@ -1005,6 +1233,8 @@
         </div>
     </section>
 
+    </main>
+    
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1125,5 +1355,161 @@
 
     <!-- JavaScript (async loading) -->
     <script src="assets/js/script.js" defer></script>
+    
+    <!-- Catalogue CTA JavaScript -->
+    <script>
+        // Show/hide sticky CTA based on scroll position
+        function handleCatalogueSticky() {
+            const cta = document.getElementById('catalogue-cta');
+            const scrollPosition = window.scrollY;
+            
+            if (scrollPosition > 300) {
+                cta.classList.add('visible');
+            } else {
+                cta.classList.remove('visible');
+            }
+        }
+
+        // Open catalogue modal
+        function openCatalogueModal() {
+            const modal = document.getElementById('catalogue-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Track modal open event
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'catalogue_modal_open', {
+                    event_category: 'Lead Generation',
+                    event_label: 'Catalogue Modal Opened'
+                });
+            }
+        }
+
+        // Close catalogue modal
+        function closeCatalogueModal() {
+            const modal = document.getElementById('catalogue-modal');
+            const cta = document.getElementById('catalogue-cta');
+            modal.classList.remove('active');
+            cta.classList.add('dismissed');
+            document.body.style.overflow = '';
+            
+            // Set a cookie to remember dismissal for 7 days
+            document.cookie = 'catalogue_cta_dismissed=true; expires=' + new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString() + '; path=/';
+        }
+
+        // Submit catalogue form
+        async function submitCatalogueForm(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            const submitButton = form.querySelector('button[type="submit"]');
+            
+            // Disable submit button and show loading
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            
+            try {
+                // Collect form data
+                const leadData = {
+                    email: formData.get('email'),
+                    company: formData.get('company'),
+                    country: formData.get('country'),
+                    phone: formData.get('phone') || '',
+                    timestamp: new Date().toISOString(),
+                    source: 'catalogue_download',
+                    user_agent: navigator.userAgent,
+                    referrer: document.referrer
+                };
+                
+                // Track the lead generation event
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'generate_lead', {
+                        event_category: 'Lead Generation',
+                        event_label: 'Catalogue Download',
+                        value: 1,
+                        custom_parameters: {
+                            company: leadData.company,
+                            country: leadData.country,
+                            source: 'catalogue_download'
+                        }
+                    });
+                }
+                
+                // Send to your lead capture endpoint (replace with your actual endpoint)
+                const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(leadData)
+                });
+                
+                if (response.ok) {
+                    // Store lead data in localStorage for analytics
+                    localStorage.setItem('catalogue_lead', JSON.stringify(leadData));
+                    
+                    // Redirect to thank you page
+                    window.location.href = 'thank-you.html';
+                } else {
+                    throw new Error('Form submission failed');
+                }
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                
+                // Still redirect to thank you page (graceful fallback)
+                // Store lead data locally even if server request fails
+                const leadData = {
+                    email: formData.get('email'),
+                    company: formData.get('company'),
+                    country: formData.get('country'),
+                    phone: formData.get('phone') || '',
+                    timestamp: new Date().toISOString(),
+                    source: 'catalogue_download'
+                };
+                localStorage.setItem('catalogue_lead', JSON.stringify(leadData));
+                
+                // Track offline conversion
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'generate_lead', {
+                        event_category: 'Lead Generation',
+                        event_label: 'Catalogue Download (Offline)',
+                        value: 1
+                    });
+                }
+                
+                window.location.href = 'thank-you.html';
+            }
+        }
+
+        // Check if CTA was previously dismissed
+        function checkCTADismissal() {
+            const dismissed = document.cookie.includes('catalogue_cta_dismissed=true');
+            if (dismissed) {
+                document.getElementById('catalogue-cta').classList.add('dismissed');
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkCTADismissal();
+            window.addEventListener('scroll', handleCatalogueSticky);
+            
+            // Show CTA after 5 seconds for better UX
+            setTimeout(() => {
+                if (!document.cookie.includes('catalogue_cta_dismissed=true')) {
+                    handleCatalogueSticky();
+                }
+            }, 5000);
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeCatalogueModal();
+            }
+        });
+    </script>
 </body>
 </html>

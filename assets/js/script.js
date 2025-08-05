@@ -437,6 +437,7 @@ function showFormErrors(errors) {
         
         if (field && errorElement && formGroup) {
             formGroup.classList.add('has-error');
+            field.setAttribute('aria-invalid', 'true');
             errorElement.textContent = error.message;
             errorElement.classList.add('show');
             
@@ -458,6 +459,7 @@ function showFormErrors(errors) {
 function clearFormErrors() {
     const errorElements = contactForm.querySelectorAll('.form-error');
     const formGroups = contactForm.querySelectorAll('.form-group');
+    const formFields = contactForm.querySelectorAll('input, textarea, select');
     
     errorElements.forEach(element => {
         element.classList.remove('show');
@@ -466,6 +468,10 @@ function clearFormErrors() {
     
     formGroups.forEach(group => {
         group.classList.remove('has-error', 'has-success');
+    });
+    
+    formFields.forEach(field => {
+        field.removeAttribute('aria-invalid');
     });
 }
 
@@ -541,12 +547,15 @@ function validateField(fieldName) {
     
     if (!isValid && value.length > 0) {
         formGroup.classList.add('has-error');
+        field.setAttribute('aria-invalid', 'true');
         errorElement.textContent = errorMessage;
         errorElement.classList.add('show');
     } else if (isValid && value.length > 0) {
         formGroup.classList.add('has-success');
+        field.setAttribute('aria-invalid', 'false');
         errorElement.classList.remove('show');
     } else {
+        field.removeAttribute('aria-invalid');
         errorElement.classList.remove('show');
     }
 }
@@ -848,34 +857,132 @@ function filterProducts(category) {
 }
 
 // ==========================================
-// Lazy Loading for Images
+// Core Web Vitals & Lazy Loading Optimizations
 // ==========================================
 
 /**
- * Initialize lazy loading
+ * Initialize lazy loading with Core Web Vitals optimizations
  */
 function initLazyLoading() {
-    const images = document.querySelectorAll('img[data-src]');
+    const images = document.querySelectorAll('img[loading="lazy"]');
     
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy');
+                    
+                    // Handle data-src for lazy images
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                    }
+                    
+                    // Add loaded class for transition
+                    img.classList.add('loaded');
+                    
                     imageObserver.unobserve(img);
                 }
             });
+        }, {
+            rootMargin: '50px 0px', // Load images 50px before they come into view
+            threshold: 0.01
         });
         
         images.forEach(img => imageObserver.observe(img));
     } else {
         // Fallback for older browsers
         images.forEach(img => {
-            img.src = img.dataset.src;
+            if (img.dataset.src) {
+                img.src = img.dataset.src;
+            }
+            img.classList.add('loaded');
         });
     }
+}
+
+/**
+ * Optimize critical resource loading
+ */
+function optimizeCriticalResources() {
+    // Preload critical images
+    const criticalImages = [
+        'assets/images/logo.svg',
+        // Add other critical images
+    ];
+    
+    criticalImages.forEach(src => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = src;
+        document.head.appendChild(link);
+    });
+    
+    // Preload critical CSS
+    const criticalCSS = document.querySelector('link[href="assets/css/style.css"]');
+    if (criticalCSS) {
+        criticalCSS.setAttribute('importance', 'high');
+    }
+}
+
+/**
+ * Monitor Core Web Vitals
+ */
+function monitorCoreWebVitals() {
+    if ('web-vital' in window) {
+        // This would require the web-vitals library
+        // For now, we'll implement basic performance monitoring
+        return;
+    }
+    
+    // Basic LCP monitoring
+    if ('PerformanceObserver' in window) {
+        try {
+            const observer = new PerformanceObserver((list) => {
+                const entries = list.getEntries();
+                const lcpEntry = entries[entries.length - 1];
+                
+                if (lcpEntry && lcpEntry.startTime > 2500) {
+                    console.warn(`LCP is ${Math.round(lcpEntry.startTime)}ms - consider optimization`);
+                }
+            });
+            
+            observer.observe({ entryTypes: ['largest-contentful-paint'] });
+        } catch (error) {
+            console.log('Performance monitoring not available');
+        }
+    }
+}
+
+/**
+ * Optimize fonts for better performance
+ */
+function optimizeFontLoading() {
+    // Add font-display swap to any dynamically loaded fonts
+    const fontLinks = document.querySelectorAll('link[href*="fonts.googleapis.com"]');
+    fontLinks.forEach(link => {
+        const url = new URL(link.href);
+        if (!url.searchParams.has('display')) {
+            url.searchParams.set('display', 'swap');
+            link.href = url.toString();
+        }
+    });
+    
+    // Preload critical font files
+    const fontPreloads = [
+        'https://fonts.gstatic.com/s/generalsans/v1/kmKhZrYrGBbdN1aV7Vokow.woff2'
+    ];
+    
+    fontPreloads.forEach(font => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'font';
+        link.type = 'font/woff2';
+        link.crossOrigin = 'anonymous';
+        link.href = font;
+        document.head.appendChild(link);
+    });
 }
 
 // ==========================================
@@ -1157,6 +1264,11 @@ function initFallbackEventListeners() {
  */
 function init() {
     console.log('AmrudhyaHarvest website initialized');
+    
+    // Core Web Vitals optimizations (run first)
+    optimizeCriticalResources();
+    optimizeFontLoading();
+    monitorCoreWebVitals();
     
     // Initialize components
     initAnimations();
