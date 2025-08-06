@@ -86,14 +86,7 @@ img[loading="lazy"].loaded {
 }
 
 /* Font loading optimization */
-@font-face {
-    font-family: 'General Sans Fallback';
-    src: local('system-ui'), local('-apple-system'), local('Roboto');
-    font-display: swap;
-    ascent-override: 105%;
-    descent-override: 25%;
-    line-gap-override: 0%;
-}
+/* Using Inter font with built-in system font fallbacks */
 
 /* Critical above-the-fold content */
 .hero, .navbar {
@@ -164,13 +157,7 @@ img {
 /* ==========================================
    Font Loading Optimization
    ========================================== */
-@font-face {
-    font-family: 'General Sans';
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/generalsans/v1/11JnAqM3Vu5ltsQFWyWWWgDZFOl-T-iqlKIqKI5n9v6QXLaQSatZvNtm55NU14fFSQ.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
+/* Inter font is loaded from ../fonts/fonts.css - no external dependencies */
 
 /* ==========================================
    CSS Variables & Reset
@@ -196,7 +183,7 @@ img {
     --border-light: #eeeeee;
     
     /* Typography */
-    --font-family: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     --font-weight-light: 300;
     --font-weight-regular: 400;
     --font-weight-medium: 500;

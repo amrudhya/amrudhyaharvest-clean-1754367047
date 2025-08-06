@@ -39,17 +39,12 @@
     
     <title>Premium Indian Agricultural Exporter | B2B Rice, Pulses & Spices Supplier - AmrudhyaHarvest</title>
     
-    <!-- Resource hints for better performance -->
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <!-- Local resources - no external dependencies needed -->
     <link rel="preconnect" href="https://formspree.io">
     
-    <!-- Fonts with improved loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+    <!-- Local fonts - improved performance -->
+    <link rel="preload" href="assets/fonts/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/fonts/fonts.css"></noscript>
     
     <!-- Font display fallback for immediate text rendering -->
     <style>
@@ -85,8 +80,8 @@
     <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
     
     <!-- Font Awesome (async loading) -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="preload" href="assets/icons/font-awesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/icons/font-awesome.min.css"></noscript>
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">

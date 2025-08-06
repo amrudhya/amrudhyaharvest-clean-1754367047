@@ -15,26 +15,24 @@ const STATIC_ASSETS = [
     '/manifest.json'
 ];
 
-const EXTERNAL_ASSETS = [
-    'https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap',
-    'https://fonts.gstatic.com/s/generalsans/v1/11JnAqM3Vu5ltsQFWyWWWgDZFOl-T-iqlKIqKI5n9v6QXLaQSatZvNtm55NU14fFSQ.woff2',
-    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+// Local assets are now included in STATIC_ASSETS - no external dependencies needed
+const LOCAL_FONT_ASSETS = [
+    '/assets/fonts/fonts.css',
+    '/assets/fonts/inter-400.ttf',
+    '/assets/fonts/inter-500.ttf',
+    '/assets/fonts/inter-600.ttf',
+    '/assets/icons/font-awesome.min.css',
+    '/assets/icons/webfonts/fa-brands-400.woff2',
+    '/assets/icons/webfonts/fa-regular-400.woff2',
+    '/assets/icons/webfonts/fa-solid-900.woff2'
 ];
 
-// Install event - cache static assets
+// Install event - cache static assets including local fonts
 self.addEventListener('install', (event) => {
     event.waitUntil(
-        Promise.all([
-            caches.open(CACHE_NAME).then((cache) => {
-                return cache.addAll(STATIC_ASSETS);
-            }),
-            caches.open(CACHE_NAME + '-external').then((cache) => {
-                return cache.addAll(EXTERNAL_ASSETS.map(url => new Request(url, {
-                    mode: 'cors',
-                    credentials: 'omit'
-                })));
-            })
-        ])
+        caches.open(CACHE_NAME).then((cache) => {
+            return cache.addAll([...STATIC_ASSETS, ...LOCAL_FONT_ASSETS]);
+        })
     );
     self.skipWaiting();
 });
@@ -45,7 +43,7 @@ self.addEventListener('activate', (event) => {
         caches.keys().then((cacheNames) => {
             return Promise.all(
                 cacheNames.map((cacheName) => {
-                    if (cacheName !== CACHE_NAME && cacheName !== CACHE_NAME + '-external') {
+                    if (cacheName !== CACHE_NAME) {
                         return caches.delete(cacheName);
                     }
                 })
@@ -57,11 +55,9 @@ self.addEventListener('activate', (event) => {
 
 // Fetch event - serve from cache with network fallback
 self.addEventListener('fetch', (event) => {
-    // Skip cross-origin requests
+    // Skip cross-origin requests (only allow same-origin and Formspree for form submissions)
     if (!event.request.url.startsWith(self.location.origin) && 
-        !event.request.url.startsWith('https://fonts.googleapis.com') &&
-        !event.request.url.startsWith('https://fonts.gstatic.com') &&
-        !event.request.url.startsWith('https://cdnjs.cloudflare.com')) {
+        !event.request.url.startsWith('https://formspree.io')) {
         return;
     }
 

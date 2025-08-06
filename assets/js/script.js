@@ -972,7 +972,7 @@ function monitorCoreWebVitals() {
  */
 function optimizeFontLoading() {
     // Add font-display swap to any dynamically loaded fonts
-    const fontLinks = document.querySelectorAll('link[href*="fonts.googleapis.com"]');
+    const fontLinks = document.querySelectorAll('link[href*="assets/fonts"]');
     fontLinks.forEach(link => {
         const url = new URL(link.href);
         if (!url.searchParams.has('display')) {
