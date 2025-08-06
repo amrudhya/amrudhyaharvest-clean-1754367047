@@ -48,6 +48,14 @@
     <noscript><link rel="stylesheet" href="assets/icons/font-awesome.min.css"></noscript>
     
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://amrudhyaharvest.com/resources.html">
+    
+    <!-- Hreflang -->
+    <link rel="alternate" hreflang="en" href="https://amrudhyaharvest.com/resources.html">
+    <link rel="alternate" hreflang="x-default" href="https://amrudhyaharvest.com/resources.html">
     
     <!-- Breadcrumb Schema -->
     <script type="application/ld+json">
@@ -75,11 +83,15 @@
     <!-- Skip to Main Content Link for Screen Readers -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <nav class="navbar">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="assets/images/logo.svg" alt="AmrudhyaHarvest" class="logo-img">
+                <a href="index.html">
+                    <img src="assets/images/logo.svg" alt="AmrudhyaHarvest - Premium Agricultural Exports" class="logo-img">
+                </a>
             </div>
+            
             <div class="nav-menu" id="nav-menu" role="navigation" aria-label="Main navigation">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link">About</a>
@@ -97,54 +109,180 @@
         </div>
     </nav>
 
-    <main id="main-content" class="resources-main">
-        <section class="resources-hero">
-            <div class="container">
-                <div class="resources-content">
-                    <h1>Agricultural Export Resources</h1>
-                    <p class="resources-subtitle">Comprehensive guides, documentation templates, and trade resources to support your agricultural export business. Access valuable industry insights and regulatory information.</p>
-                    
-                    <div class="resources-grid">
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-file-pdf"></i>
-                            </div>
-                            <h2>Export Documentation</h2>
-                            <p>Templates and guides for export certificates, shipping documents, and regulatory compliance.</p>
-                            <span class="coming-soon">Coming Soon</span>
-                        </div>
-                        
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h2>Market Intelligence</h2>
-                            <p>Industry reports, market trends, and pricing insights for global agricultural markets.</p>
-                            <span class="coming-soon">Coming Soon</span>
-                        </div>
-                        
-                        <div class="resource-card">
-                            <div class="resource-icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <h2>Export Guides</h2>
-                            <p>Step-by-step guides for agricultural export processes, regulations, and best practices.</p>
-                            <span class="coming-soon">Coming Soon</span>
-                        </div>
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="current">Resources</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Resources Hero -->
+    <main id="main-content">
+    <section class="page-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Agricultural Export Resources</h1>
+                <p class="hero-subtitle">Comprehensive guides, documentation templates, and trade resources to support your agricultural export business. Access valuable industry insights and regulatory information.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Content -->
+    <section class="resources-content">
+        <div class="container">
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-file-pdf"></i>
                     </div>
-                    
-                    <div class="cta-section">
-                        <h2>Need Immediate Assistance?</h2>
-                        <p>Contact our export team for personalized guidance and support with your agricultural export requirements.</p>
-                        <div class="cta-buttons">
-                            <a href="index.html#contact" class="btn btn-primary">Contact Export Team</a>
-                            <a href="index.html" class="btn btn-secondary">Return to Home</a>
+                    <h2>Export Documentation</h2>
+                    <p>Templates and guides for export certificates, shipping documents, and regulatory compliance.</p>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2>Market Intelligence</h2>
+                    <p>Industry reports, market trends, and pricing insights for global agricultural markets.</p>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h2>Export Guides</h2>
+                    <p>Step-by-step guides for agricultural export processes, regulations, and best practices.</p>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <h2>Need Immediate Assistance?</h2>
+                <p>Contact our export team for personalized guidance and support with your agricultural export requirements.</p>
+                <div class="cta-buttons">
+                    <a href="index.html#contact" class="btn btn-primary">Contact Export Team</a>
+                    <a href="index.html" class="btn btn-secondary">Return to Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.svg" alt="AmrudhyaHarvest - Premium Agricultural Exports">
+                    </div>
+                    <p>Harvesting India's purity and shipping premium agricultural products to the world with excellence and trust.</p>
+                    <div class="footer-certifications">
+                        <span class="cert-badge-small">FSSAI Certified</span>
+                        <span class="cert-badge-small">ISO 22000</span>
+                        <span class="cert-badge-small">APEDA Registered</span>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#global-presence">Global Reach</a></li>
+                        <li><a href="index.html#certifications">Certifications</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="/careers">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Products & Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="products.html#pulses">Premium Pulses</a></li>
+                        <li><a href="products.html#rice">Basmati Rice</a></li>
+                        <li><a href="products.html#spices">Authentic Spices</a></li>
+                        <li><a href="products.html#agri-inputs">Cold-Pressed Oils</a></li>
+                        <li><a href="products.html#custom">Custom Packaging</a></li>
+                        <li><a href="/bulk-export">Bulk Export Services</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact & Support</h3>
+                    <div class="footer-contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 9106516439</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@amrudhyaharvest.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>+91 9106516439</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>24*7 Customer Support</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 AmrudhyaHarvest. All rights reserved. | Export License: APEDA-2024-001 | FSSAI License: 12345678901234</p>
+                    <div class="footer-bottom-links">
+                        <a href="/privacy-policy">Privacy Policy</a>
+                        <a href="/terms-of-service">Terms of Service</a>
+                        <a href="/shipping-policy">Shipping Policy</a>
+                        <a href="/export-terms">Export Terms</a>
+                        <a href="/quality-policy">Quality Policy</a>
+                        <a href="/cookie-policy">Cookie Policy</a>
+                        <a href="/refund-policy">Refund Policy</a>
+                        <a href="/compliance">Compliance</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Enhanced Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-bubble" id="chatBubble">
+            <i class="fas fa-comments"></i>
+            <span class="chat-notification">Chat with us!</span>
+        </div>
+        <div class="chat-options" id="chatOptions">
+            <a href="https://wa.me/919106516439" target="_blank" class="chat-option whatsapp">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+            <a href="mailto:info@amrudhyaharvest.com" class="chat-option email">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+            </a>
+            <a href="tel:+919106516439" class="chat-option phone">
+                <i class="fas fa-phone"></i>
+                <span>Call</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <script src="assets/js/script.js" defer></script>
 </body>
