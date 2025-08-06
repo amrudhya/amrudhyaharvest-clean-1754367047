@@ -7,13 +7,13 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            font-family: 'General Sans', sans-serif; 
-            background: linear-gradient(135deg, #fdfdfd 0%, #f8f9f8 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; 
+            background: linear-gradient(135deg, #F5FBF7 0%, #e8f5e8 50%, #d4f0d4 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #1a2e1a;
+            color: #043025;
         }
         .error-container {
             text-align: center;
@@ -22,32 +22,40 @@
         }
         .error-code {
             font-size: 6rem;
-            font-weight: 600;
-            color: #d4af37;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FBD801, #f4d800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
         }
         .error-message {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #2d5016;
+            color: #043025;
+            font-weight: 600;
         }
         .error-description {
-            color: #8b9a8b;
+            color: #5a6b5a;
             margin-bottom: 2rem;
             line-height: 1.6;
         }
         .btn {
             display: inline-block;
-            padding: 0.75rem 2rem;
-            background: linear-gradient(135deg, #6ba644, #2d5016);
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #85C443, #7ab83a);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: transform 0.25s ease;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(133, 196, 67, 0.3);
         }
         .btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(133, 196, 67, 0.4);
+            background: linear-gradient(135deg, #043025, #85C443);
         }
     </style>
 </head>
