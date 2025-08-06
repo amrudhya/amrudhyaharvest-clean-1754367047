@@ -118,6 +118,50 @@ img {
 }
 
 /* ==========================================
+   Browser Support & Fallbacks
+   ========================================== */
+
+/* CSS Grid fallback for older browsers */
+@supports not (display: grid) {
+    .products-grid,
+    .features-grid,
+    .certifications-grid,
+    .capabilities-grid,
+    .contact-content {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -1rem;
+    }
+    
+    .products-grid > *,
+    .features-grid > *,
+    .certifications-grid > *,
+    .capabilities-grid > *,
+    .contact-content > * {
+        flex: 1 1 300px;
+        margin: 1rem;
+        min-width: 280px;
+    }
+}
+
+/* Flexbox fallback for very old browsers */
+@supports not (display: flex) {
+    .nav-container,
+    .hero-cta,
+    .hero-stats {
+        display: table;
+        width: 100%;
+    }
+    
+    .nav-container > *,
+    .hero-cta > *,
+    .hero-stats > * {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+
+/* ==========================================
    Font Loading Optimization
    ========================================== */
 @font-face {
@@ -213,6 +257,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 { 
+    font-size: 3.5rem; /* Fallback for older browsers */
     font-size: clamp(2.75rem, 5vw, 4.5rem); 
     font-weight: var(--font-weight-light);
     letter-spacing: -0.04em;
@@ -366,6 +411,7 @@ p {
     left: 0;
     right: 0;
     background: rgba(253, 253, 253, 0.95);
+    -webkit-backdrop-filter: blur(20px); /* Safari */
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-light);
     z-index: 1000;

@@ -4,6 +4,29 @@
  */
 
 // ==========================================
+// Security & Utilities
+// ==========================================
+
+/**
+ * Sanitize HTML content to prevent XSS attacks
+ */
+function sanitizeHTML(str) {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+}
+
+/**
+ * Create element safely with content
+ */
+function createSecureElement(tag, content, className = '') {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    element.textContent = content; // Use textContent instead of innerHTML
+    return element;
+}
+
+// ==========================================
 // DOM Elements
 // ==========================================
 const navbar = document.getElementById('navbar');
