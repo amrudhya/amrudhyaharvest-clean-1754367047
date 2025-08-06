@@ -14,14 +14,14 @@
     <meta property="og:description" content="B2B wholesale supplier of premium basmati rice, organic pulses, authentic spices & natural agri-inputs. FSSAI certified. Global export to 50+ countries.">
     <meta property="og:type" content="product.group">
     <meta property="og:url" content="https://amrudhyaharvest.com/products.html">
-    <meta property="og:image" content="https://amrudhyaharvest.com/assets/images/products-og.jpg">
+    <meta property="og:image" content="https://amrudhyaharvest.com/assets/images/logo.svg">
     <meta property="og:site_name" content="AmrudhyaHarvest">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Premium Indian Agricultural Products | B2B Wholesale Supplier">
     <meta name="twitter:description" content="B2B wholesale supplier of premium basmati rice, organic pulses, authentic spices & natural agri-inputs. FSSAI certified.">
-    <meta name="twitter:image" content="https://amrudhyaharvest.com/assets/images/products-og.jpg">
+    <meta name="twitter:image" content="https://amrudhyaharvest.com/assets/images/logo.svg">
     
     <!-- Critical resource preconnections for Core Web Vitals -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,8 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap"></noscript>
     
     <!-- Critical CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
     
     <!-- Non-critical CSS - lazy loaded -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -313,142 +314,926 @@
         </div>
     </section>
 
-    <!-- Product Categories Overview -->
-    <section class="product-categories-overview">
+    <!-- Product Search & Filters -->
+    <section class="product-filters">
         <div class="container">
-            <div class="section-header">
-                <h2>Our Product Categories</h2>
-                <p>Four core categories of premium Indian agricultural products, each carefully sourced and quality-tested</p>
-            </div>
-            
-            <div class="categories-grid">
-                <div class="category-card">
-                    <div class="category-image">
-                        <i class="fas fa-wheat-awn"></i>
-                    </div>
-                    <div class="category-content">
-                        <h3>Premium Rice</h3>
-                        <p>Aromatic and non-aromatic rice varieties from India's premier growing regions</p>
-                        <ul class="category-highlights">
-                            <li>Basmati 1121</li>
-                            <li>Pusa Basmati</li>
-                            <li>Sona Masoori</li>
-                            <li>Shella Rice</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">Request Quote →</a>
+            <div class="filters-wrapper">
+                <div class="search-box">
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="product-search" placeholder="Search products by name, category, or specification..." class="search-input">
+                        <button type="button" class="clear-search" id="clear-search" aria-label="Clear search">
+                            <i class="fas fa-times"></i>
+                        </button>
                     </div>
                 </div>
                 
-                <div class="category-card">
-                    <div class="category-image">
-                        <i class="fas fa-circle"></i>
-                    </div>
-                    <div class="category-content">
-                        <h3>Pulses & Grains</h3>
-                        <p>High-protein legumes and whole grains for nutritious global markets</p>
-                        <ul class="category-highlights">
-                            <li>Moong Dal</li>
-                            <li>Chana Dal</li>
-                            <li>Whole Grains</li>
-                            <li>Red Lentils</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">Request Quote →</a>
-                    </div>
+                <div class="filter-tabs" role="tablist" aria-label="Product categories">
+                    <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+                        <span class="tab-icon"><i class="fas fa-th-large"></i></span>
+                        <span class="tab-text">All Products</span>
+                    </button>
+                    <button class="filter-tab" data-filter="rice" role="tab" aria-selected="false">
+                        <span class="tab-icon">🌾</span>
+                        <span class="tab-text">Rice</span>
+                    </button>
+                    <button class="filter-tab" data-filter="pulses" role="tab" aria-selected="false">
+                        <span class="tab-icon">🌰</span>
+                        <span class="tab-text">Pulses</span>
+                    </button>
+                    <button class="filter-tab" data-filter="spices" role="tab" aria-selected="false">
+                        <span class="tab-icon">🌶️</span>
+                        <span class="tab-text">Spices</span>
+                    </button>
+                    <button class="filter-tab" data-filter="agri-inputs" role="tab" aria-selected="false">
+                        <span class="tab-icon">🍃</span>
+                        <span class="tab-text">Agri-Inputs</span>
+                    </button>
                 </div>
                 
-                <div class="category-card">
-                    <div class="category-image">
-                        <i class="fas fa-pepper-hot"></i>
-                    </div>
-                    <div class="category-content">
-                        <h3>Spices & Herbs</h3>
-                        <p>Aromatic spices and herbal products that retain natural oils and flavors</p>
-                        <ul class="category-highlights">
-                            <li>Turmeric</li>
-                            <li>Cumin</li>
-                            <li>Dry Moringa</li>
-                            <li>Black Pepper</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">Request Quote →</a>
-                    </div>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-image">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <div class="category-content">
-                        <h3>Natural Agri-Inputs</h3>
-                        <p>Organic agricultural inputs for sustainable farming practices</p>
-                        <ul class="category-highlights">
-                            <li>Neem Powder</li>
-                            <li>Vermicompost</li>
-                            <li>Seaweed Granules</li>
-                            <li>Bio-Fertilizers</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">Request Quote →</a>
-                    </div>
+                <div class="view-options">
+                    <button class="view-btn active" data-view="grid" aria-label="Grid view">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="list" aria-label="List view">
+                        <i class="fas fa-list"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="featured-products">
+    <!-- Product Categories Overview -->
+    <section class="products-showcase" id="products-showcase">
         <div class="container">
-            <div class="section-header">
-                <h2>Featured Products</h2>
-                <p>Our flagship products that represent the best of Indian agriculture</p>
+            <div class="showcase-header">
+                <h2>Premium Agricultural Products</h2>
+                <p class="showcase-subtitle">Discover our comprehensive range of export-quality products from India's finest agricultural regions</p>
+                <div class="results-info">
+                    <span id="results-count">Showing all 16 products</span>
+                    <div class="sort-options">
+                        <select id="sort-products" class="sort-select">
+                            <option value="name">Sort by Name</option>
+                            <option value="category">Sort by Category</option>
+                            <option value="featured">Featured First</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             
-            <div class="featured-grid">
-                <div class="featured-product">
-                    <div class="product-badge">Flagship</div>
-                    <div class="product-image">
-                        <i class="fas fa-wheat-awn"></i>
+            <div class="products-grid" id="products-grid">
+                <!-- Rice Products -->
+                <div class="product-card enhanced" data-category="rice" data-name="basmati-1121" data-featured="true">
+                    <div class="product-image-wrapper">
+                        <div class="product-badge badge-flagship">Flagship</div>
+                        <div class="product-image">
+                            <div class="image-placeholder rice-bg">
+                                <div class="product-icon">🌾</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="basmati-1121">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
-                    <h3>Basmati 1121</h3>
-                    <p>Premium aromatic long-grain rice, aged to perfection for superior taste and aroma</p>
-                    <div class="product-specs">
-                        <span class="spec">Export Quality</span>
-                        <span class="spec">1-2 Years Aged</span>
-                        <span class="spec">Lab Tested</span>
+                    <div class="product-info">
+                        <div class="product-category">Premium Rice</div>
+                        <h3 class="product-name">Basmati 1121 Golden Sella</h3>
+                        <p class="product-description">Premium aromatic long-grain rice, aged 1-2 years for superior taste and aroma. Export quality with consistent grain length.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Export Quality</span>
+                            <span class="spec-tag">1-2 Years Aged</span>
+                            <span class="spec-tag">Lab Tested</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Grain Length:</span>
+                                <span class="detail-value">6.61-8.5mm</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">12-14%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">5-50kg bags</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="basmati-1121">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="basmati-1121">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
                     </div>
-                    <a href="#contact" class="btn btn-primary">Request Quote</a>
                 </div>
-                
-                <div class="featured-product">
-                    <div class="product-badge">Popular</div>
-                    <div class="product-image">
-                        <i class="fas fa-circle"></i>
+
+                <div class="product-card enhanced" data-category="rice" data-name="pusa-basmati" data-featured="false">
+                    <div class="product-image-wrapper">
+                        <div class="product-badge badge-quality">Premium</div>
+                        <div class="product-image">
+                            <div class="image-placeholder rice-bg">
+                                <div class="product-icon">🌾</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="pusa-basmati">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
-                    <h3>Moong Dal</h3>
-                    <p>High-protein yellow lentils, perfect for nutritious meals and commercial use</p>
-                    <div class="product-specs">
-                        <span class="spec">High Protein</span>
-                        <span class="spec">Machine Cleaned</span>
-                        <span class="spec">Export Grade</span>
+                    <div class="product-info">
+                        <div class="product-category">Premium Rice</div>
+                        <h3 class="product-name">Pusa Basmati Rice</h3>
+                        <p class="product-description">Traditional basmati variety with excellent cooking quality and natural aroma. Perfect for premium rice markets.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Traditional Variety</span>
+                            <span class="spec-tag">Natural Aroma</span>
+                            <span class="spec-tag">Premium Grade</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Grain Length:</span>
+                                <span class="detail-value">6.0-7.5mm</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">12-14%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">5-50kg bags</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="pusa-basmati">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="pusa-basmati">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
                     </div>
-                    <a href="#contact" class="btn btn-primary">Request Quote</a>
                 </div>
-                
-                <div class="featured-product">
-                    <div class="product-badge">Premium</div>
-                    <div class="product-image">
-                        <i class="fas fa-pepper-hot"></i>
+
+                <div class="product-card enhanced" data-category="rice" data-name="sona-masoori" data-featured="false">
+                    <div class="product-image-wrapper">
+                        <div class="product-badge badge-popular">Popular</div>
+                        <div class="product-image">
+                            <div class="image-placeholder rice-bg">
+                                <div class="product-icon">🌾</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="sona-masoori">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
                     </div>
-                    <h3>Organic Turmeric</h3>
-                    <p>Pure turmeric powder with high curcumin content and vibrant color</p>
-                    <div class="product-specs">
-                        <span class="spec">Organic Certified</span>
-                        <span class="spec">High Curcumin</span>
-                        <span class="spec">Natural Color</span>
+                    <div class="product-info">
+                        <div class="product-category">Premium Rice</div>
+                        <h3 class="product-name">Sona Masoori Rice</h3>
+                        <p class="product-description">Medium-grain non-basmati rice, lightweight and aromatic. Ideal for daily consumption and export markets.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Medium Grain</span>
+                            <span class="spec-tag">Lightweight</span>
+                            <span class="spec-tag">Daily Use</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Grain Length:</span>
+                                <span class="detail-value">5.0-6.0mm</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">12-14%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">5-50kg bags</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="sona-masoori">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="sona-masoori">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
                     </div>
-                    <a href="#contact" class="btn btn-primary">Request Quote</a>
+                </div>
+
+                <div class="product-card enhanced" data-category="rice" data-name="shella-rice" data-featured="false">
+                    <div class="product-image-wrapper">
+                        <div class="product-image">
+                            <div class="image-placeholder rice-bg">
+                                <div class="product-icon">🌾</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="shella-rice">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Premium Rice</div>
+                        <h3 class="product-name">Golden Shella Rice</h3>
+                        <p class="product-description">Parboiled rice with enhanced nutritional value. Retains more nutrients and has longer shelf life.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Parboiled</span>
+                            <span class="spec-tag">Nutritious</span>
+                            <span class="spec-tag">Long Shelf Life</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Processing:</span>
+                                <span class="detail-value">Parboiled</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">12-14%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">5-50kg bags</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="shella-rice">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="shella-rice">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pulses Products -->
+                <div class="product-card enhanced" data-category="pulses" data-name="moong-dal" data-featured="true">
+                    <div class="product-image-wrapper">
+                        <div class="product-badge badge-popular">Best Seller</div>
+                        <div class="product-image">
+                            <div class="image-placeholder pulses-bg">
+                                <div class="product-icon">🌰</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="moong-dal">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Pulses & Grains</div>
+                        <h3 class="product-name">Yellow Moong Dal</h3>
+                        <p class="product-description">High-protein split yellow lentils, machine cleaned and polished. Perfect for nutritious meals and commercial use.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">High Protein</span>
+                            <span class="spec-tag">Machine Cleaned</span>
+                            <span class="spec-tag">Export Grade</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Protein:</span>
+                                <span class="detail-value">24-26%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">10-12%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">5-50kg bags</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="moong-dal">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="moong-dal">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card enhanced" data-category="pulses" data-name="chana-dal" data-featured="false">
+                    <div class="product-image-wrapper">
+                        <div class="product-image">
+                            <div class="image-placeholder pulses-bg">
+                                <div class="product-icon">🌰</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="chana-dal">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Pulses & Grains</div>
+                        <h3 class="product-name">Chana Dal (Split Chickpeas)</h3>
+                        <p class="product-description">Premium quality split chickpeas with high protein content. Essential ingredient for Indian cuisine and nutrition.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Premium Quality</span>
+                            <span class="spec-tag">High Protein</span>
+                            <span class="spec-tag">Split Cleaned</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Protein:</span>
+                                <span class="detail-value">20-22%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">10-12%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">5-50kg bags</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="chana-dal">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="chana-dal">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card enhanced" data-category="pulses" data-name="red-lentils" data-featured="false">
+                    <div class="product-image-wrapper">
+                        <div class="product-image">
+                            <div class="image-placeholder pulses-bg">
+                                <div class="product-icon">🌰</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="red-lentils">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Pulses & Grains</div>
+                        <h3 class="product-name">Red Lentils (Masoor Dal)</h3>
+                        <p class="product-description">Fast-cooking red lentils with excellent taste and nutritional profile. Popular in global markets for versatility.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Fast Cooking</span>
+                            <span class="spec-tag">Versatile</span>
+                            <span class="spec-tag">Export Quality</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Protein:</span>
+                                <span class="detail-value">22-24%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">10-12%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">5-50kg bags</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="red-lentils">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="red-lentils">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card enhanced" data-category="pulses" data-name="black-gram" data-featured="false">
+                    <div class="product-image-wrapper">
+                        <div class="product-image">
+                            <div class="image-placeholder pulses-bg">
+                                <div class="product-icon">🌰</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="black-gram">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Pulses & Grains</div>
+                        <h3 class="product-name">Black Gram (Urad Dal)</h3>
+                        <p class="product-description">Premium black gram with high protein content. Essential for traditional Indian preparations and fermented foods.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Premium Grade</span>
+                            <span class="spec-tag">High Protein</span>
+                            <span class="spec-tag">Traditional</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Protein:</span>
+                                <span class="detail-value">25-27%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">10-12%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">5-50kg bags</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="black-gram">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="black-gram">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spices Products -->
+                <div class="product-card enhanced" data-category="spices" data-name="turmeric" data-featured="true">
+                    <div class="product-image-wrapper">
+                        <div class="product-badge badge-premium">Organic</div>
+                        <div class="product-image">
+                            <div class="image-placeholder spices-bg">
+                                <div class="product-icon">🌶️</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="turmeric">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Spices & Herbs</div>
+                        <h3 class="product-name">Organic Turmeric Powder</h3>
+                        <p class="product-description">Pure turmeric powder with high curcumin content and vibrant natural color. Organic certified for premium markets.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Organic Certified</span>
+                            <span class="spec-tag">High Curcumin</span>
+                            <span class="spec-tag">Natural Color</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Curcumin:</span>
+                                <span class="detail-value">3-7%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">8-10%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">1-25kg packs</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="turmeric">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="turmeric">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card enhanced" data-category="spices" data-name="cumin" data-featured="false">
+                    <div class="product-image-wrapper">
+                        <div class="product-image">
+                            <div class="image-placeholder spices-bg">
+                                <div class="product-icon">🌶️</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="cumin">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Spices & Herbs</div>
+                        <h3 class="product-name">Cumin Seeds (Jeera)</h3>
+                        <p class="product-description">Premium quality cumin seeds with strong aroma and flavor. Essential spice for international cuisine and food processing.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Premium Quality</span>
+                            <span class="spec-tag">Strong Aroma</span>
+                            <span class="spec-tag">Export Grade</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Purity:</span>
+                                <span class="detail-value">99.5%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">8-10%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">1-25kg packs</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="cumin">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="cumin">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card enhanced" data-category="spices" data-name="black-pepper" data-featured="false">
+                    <div class="product-image-wrapper">
+                        <div class="product-image">
+                            <div class="image-placeholder spices-bg">
+                                <div class="product-icon">🌶️</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="black-pepper">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Spices & Herbs</div>
+                        <h3 class="product-name">Black Pepper</h3>
+                        <p class="product-description">Premium black pepper with intense flavor and aroma. Known as the 'King of Spices' for its universal appeal and quality.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">King of Spices</span>
+                            <span class="spec-tag">Intense Flavor</span>
+                            <span class="spec-tag">Premium Grade</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Piperine:</span>
+                                <span class="detail-value">6-9%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">10-12%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">1-25kg packs</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="black-pepper">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="black-pepper">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card enhanced" data-category="spices" data-name="moringa" data-featured="false">
+                    <div class="product-image-wrapper">
+                        <div class="product-badge badge-organic">Superfood</div>
+                        <div class="product-image">
+                            <div class="image-placeholder spices-bg">
+                                <div class="product-icon">🍃</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="moringa">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Spices & Herbs</div>
+                        <h3 class="product-name">Dried Moringa Leaves</h3>
+                        <p class="product-description">Nutrient-rich moringa leaves, dried and powdered. Superfood with exceptional nutritional profile for health markets.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Superfood</span>
+                            <span class="spec-tag">Nutrient Rich</span>
+                            <span class="spec-tag">Natural</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Protein:</span>
+                                <span class="detail-value">25-30%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">8-10%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">1-25kg packs</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="moringa">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="moringa">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agri-Inputs Products -->
+                <div class="product-card enhanced" data-category="agri-inputs" data-name="neem-powder" data-featured="false">
+                    <div class="product-image-wrapper">
+                        <div class="product-badge badge-organic">Natural</div>
+                        <div class="product-image">
+                            <div class="image-placeholder agri-bg">
+                                <div class="product-icon">🍃</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="neem-powder">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Natural Agri-Inputs</div>
+                        <h3 class="product-name">Neem Powder</h3>
+                        <p class="product-description">Natural neem powder for organic farming. Effective pest control solution with environmental benefits.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Natural</span>
+                            <span class="spec-tag">Pest Control</span>
+                            <span class="spec-tag">Eco-Friendly</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Active Content:</span>
+                                <span class="detail-value">1500-3000ppm</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">8-10%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">5-50kg bags</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="neem-powder">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="neem-powder">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card enhanced" data-category="agri-inputs" data-name="vermicompost" data-featured="false">
+                    <div class="product-image-wrapper">
+                        <div class="product-image">
+                            <div class="image-placeholder agri-bg">
+                                <div class="product-icon">🍃</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="vermicompost">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Natural Agri-Inputs</div>
+                        <h3 class="product-name">Vermicompost</h3>
+                        <p class="product-description">Premium quality vermicompost for soil enrichment. Natural organic fertilizer produced through earthworm composting.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Organic</span>
+                            <span class="spec-tag">Soil Enricher</span>
+                            <span class="spec-tag">Eco-Friendly</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">N-P-K:</span>
+                                <span class="detail-value">1.5-0.8-1.2%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">25-35%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">5-50kg bags</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="vermicompost">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="vermicompost">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card enhanced" data-category="agri-inputs" data-name="seaweed-granules" data-featured="false">
+                    <div class="product-image-wrapper">
+                        <div class="product-image">
+                            <div class="image-placeholder agri-bg">
+                                <div class="product-icon">🍃</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="seaweed-granules">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Natural Agri-Inputs</div>
+                        <h3 class="product-name">Seaweed Granules</h3>
+                        <p class="product-description">Natural seaweed extract granules for plant growth enhancement. Rich in micronutrients and growth hormones.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Growth Enhancer</span>
+                            <span class="spec-tag">Micronutrients</span>
+                            <span class="spec-tag">Natural Extract</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Alginate:</span>
+                                <span class="detail-value">18-22%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">10-12%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">1-25kg packs</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="seaweed-granules">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="seaweed-granules">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card enhanced" data-category="agri-inputs" data-name="bio-fertilizer" data-featured="false">
+                    <div class="product-image-wrapper">
+                        <div class="product-image">
+                            <div class="image-placeholder agri-bg">
+                                <div class="product-icon">🍃</div>
+                                <div class="hover-overlay">
+                                    <button class="quick-view-btn" data-product="bio-fertilizer">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Natural Agri-Inputs</div>
+                        <h3 class="product-name">Bio-Fertilizer Mix</h3>
+                        <p class="product-description">Concentrated bio-fertilizer with beneficial microorganisms. Enhances soil fertility and plant nutrition naturally.</p>
+                        <div class="product-specs">
+                            <span class="spec-tag">Concentrated</span>
+                            <span class="spec-tag">Microorganisms</span>
+                            <span class="spec-tag">Soil Enhancer</span>
+                        </div>
+                        <div class="product-details">
+                            <div class="detail-item">
+                                <span class="detail-label">CFU Count:</span>
+                                <span class="detail-value">10^8/gm</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Moisture:</span>
+                                <span class="detail-value">20-25%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Packaging:</span>
+                                <span class="detail-value">1-25kg packs</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-full product-cta" data-product="bio-fertilizer">
+                                <i class="fas fa-shopping-cart"></i>
+                                Request Quote
+                            </button>
+                            <button class="btn btn-outline btn-compare" data-product="bio-fertilizer">
+                                <i class="fas fa-balance-scale"></i>
+                                Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="no-results" id="no-results" style="display: none;">
+                <div class="no-results-content">
+                    <div class="no-results-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>No products found</h3>
+                    <p>Try adjusting your search terms or filters to find what you're looking for.</p>
+                    <button class="btn btn-outline" onclick="clearAllFilters()">Clear All Filters</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Product Comparison Panel -->
+    <div class="comparison-panel" id="comparison-panel" style="display: none;">
+        <div class="comparison-header">
+            <h3>Compare Products</h3>
+            <button class="close-comparison" id="close-comparison">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="comparison-content" id="comparison-content">
+            <div class="comparison-placeholder">
+                <p>Select products to compare their specifications</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quick-view-modal">
+        <div class="modal-overlay" onclick="closeQuickView()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeQuickView()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="quick-view-content" id="quick-view-content">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </div>
 
     <!-- Quality Assurance -->
     <section class="quality-assurance">
@@ -549,7 +1334,7 @@
         </div>
     </footer>
 
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js" defer></script>
     
     <!-- Catalogue CTA JavaScript -->
     <script>

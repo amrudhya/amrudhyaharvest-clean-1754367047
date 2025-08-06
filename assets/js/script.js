@@ -933,13 +933,13 @@ function monitorCoreWebVitals() {
                 const lcpEntry = entries[entries.length - 1];
                 
                 if (lcpEntry && lcpEntry.startTime > 2500) {
-                    console.warn(`LCP is ${Math.round(lcpEntry.startTime)}ms - consider optimization`);
+                    // LCP monitoring - consider optimization if > 2500ms
                 }
             });
             
             observer.observe({ entryTypes: ['largest-contentful-paint'] });
         } catch (error) {
-            console.log('Performance monitoring not available');
+            // Performance monitoring not available
         }
     }
 }
@@ -989,7 +989,7 @@ function monitorPerformance() {
             
             // Only log if page load time is concerning
             if (pageLoadTime > 3000) {
-                console.warn(`Page load time: ${pageLoadTime}ms - Consider optimization`);
+                // Page load time monitoring - consider optimization if > 3000ms
             }
         });
     }
@@ -1252,7 +1252,7 @@ function initFallbackEventListeners() {
  * Initialize all functionality when DOM is ready
  */
 function init() {
-    console.log('AmrudhyaHarvest website initialized');
+    // Website initialized successfully
     
     // Core Web Vitals optimizations (run first)
     optimizeCriticalResources();
@@ -1286,12 +1286,12 @@ function init() {
     // Smooth scroll polyfill check
     if (!('scrollBehavior' in document.documentElement.style)) {
         // Load smooth scroll polyfill if needed
-        console.log('Smooth scroll not supported, consider loading polyfill');
+        // Smooth scroll not supported
     }
     
     // Set initial theme based on user preference
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        console.log('User prefers dark mode - consider implementing dark theme');
+        // User prefers dark mode
     }
     
     // Performance mark

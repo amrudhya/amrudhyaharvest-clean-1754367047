@@ -184,11 +184,35 @@ git checkout -b rollback-v1.0.0 v1.0.0
 
 ---
 
+### v1.2.3 - Simplified Contact Form (2025-08-05)
+**Git Tag:** `v1.2.3`
+**Commit:** `1ddc85c`
+
+#### 🗑️ Removed Fields:
+- Budget Range (USD) dropdown with preset price ranges
+- Project Timeline selection field  
+- Destination Country dropdown
+- Required Certifications multi-select field with help text
+
+#### ✨ Form Simplification:
+- Streamlined contact form to essential fields only
+- Removed overwhelming dropdown options and multi-selects
+- Eliminated complex business intelligence gathering fields
+- Maintained core contact fields: name, email, company, country, product interest, message
+
+#### 🎯 User Experience Improvement:
+- Faster form completion time
+- Less intimidating form interface
+- Focus on essential contact information
+- Reduced form abandonment potential
+
+---
+
 ## Current Status
 - **Live URL**: https://amrudhya.github.io/amrudhyaharvest-clean-1754367047/
-- **Latest Version**: v1.2.2
+- **Latest Version**: v1.2.3
 - **Last Updated**: 2025-08-05
 
 ---
 
-*Next version will be v1.3.0 for any new features or v1.2.3 for small fixes*
+*Next version will be v1.3.0 for any new features or v1.2.4 for small fixes*

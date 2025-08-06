@@ -17,7 +17,8 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap"></noscript>
     
     <!-- Critical CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
     
     <!-- Non-critical CSS - lazy loaded -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -252,7 +253,7 @@
                 
                 <div class="contact-form">
                     <h3>Send Us Your Requirements</h3>
-                    <form id="contact-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+                    <form id="contact-form" method="POST" action="https://formspree.io/f/mqalavwr">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Your Name *" required>
                         </div>
@@ -326,7 +327,7 @@
         </div>
     </footer>
 
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js" defer></script>
     
     <!-- Auto-download script -->
     <script>

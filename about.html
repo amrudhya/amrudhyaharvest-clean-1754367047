@@ -14,14 +14,14 @@
     <meta property="og:description" content="Leading Indian agricultural export company with 15+ state sourcing network, FSSAI certified, serving 50+ countries. Learn our story.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://amrudhyaharvest.com/about.html">
-    <meta property="og:image" content="https://amrudhyaharvest.com/assets/images/about-og.jpg">
+    <meta property="og:image" content="https://amrudhyaharvest.com/assets/images/logo.svg">
     <meta property="og:site_name" content="AmrudhyaHarvest">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About AmrudhyaHarvest | Leading Indian Agricultural Export Company">
     <meta name="twitter:description" content="Leading Indian agricultural export company with 15+ state sourcing network, FSSAI certified, serving 50+ countries.">
-    <meta name="twitter:image" content="https://amrudhyaharvest.com/assets/images/about-og.jpg">
+    <meta name="twitter:image" content="https://amrudhyaharvest.com/assets/images/logo.svg">
     
     <!-- Critical resource preconnections for Core Web Vitals -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,8 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap"></noscript>
     
     <!-- Critical CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
     
     <!-- Non-critical CSS - lazy loaded -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -371,6 +372,6 @@
         </div>
     </footer>
 
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js" defer></script>
 </body>
 </html>

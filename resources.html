@@ -14,14 +14,14 @@
     <meta property="og:description" content="Download agricultural export resources, product catalogs, export guides, and certification documents. Free B2B tools for international agriculture.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://amrudhyaharvest.com/resources.html">
-    <meta property="og:image" content="https://amrudhyaharvest.com/assets/images/resources-og.jpg">
+    <meta property="og:image" content="https://amrudhyaharvest.com/assets/images/logo.svg">
     <meta property="og:site_name" content="AmrudhyaHarvest">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Agricultural Export Resources & Catalogs | Free Download">
     <meta name="twitter:description" content="Download agricultural export resources, product catalogs, export guides, and certification documents.">
-    <meta name="twitter:image" content="https://amrudhyaharvest.com/assets/images/resources-og.jpg">
+    <meta name="twitter:image" content="https://amrudhyaharvest.com/assets/images/logo.svg">
     
     <!-- Critical resource preconnections -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +32,9 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap"></noscript>
     
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Critical CSS -->
+    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
     
     <!-- Non-critical CSS -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -63,28 +65,80 @@
     </script>
 </head>
 <body>
+    <!-- Skip to Main Content Link for Screen Readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <img src="assets/images/logo.svg" alt="AmrudhyaHarvest" class="logo-img">
             </div>
-            <div class="nav-menu">
+            <div class="nav-menu" id="nav-menu" role="navigation" aria-label="Main navigation">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="products.html" class="nav-link">Products</a>
                 <a href="#certifications" class="nav-link">Certifications</a>
-                <a href="resources.html" class="nav-link">Resources</a>
-                <a href="#contact" class="nav-link cta-btn">Contact</a>
+                <a href="resources.html" class="nav-link active">Resources</a>
+                <a href="index.html#contact" class="nav-link cta-btn">Contact</a>
             </div>
+            
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
         </div>
     </nav>
 
-    <main style="padding-top: 120px; min-height: 80vh; display: flex; align-items: center; justify-content: center;">
-        <div class="container" style="text-align: center;">
-            <h1>Export Resources</h1>
-            <p style="margin: 2rem 0; font-size: 1.2rem; color: var(--text-light);">Coming Soon - Export guides, documentation templates and trade resources</p>
-            <a href="index.html" class="btn btn-primary">Return to Home</a>
-        </div>
+    <main id="main-content" class="resources-main">
+        <section class="resources-hero">
+            <div class="container">
+                <div class="resources-content">
+                    <h1>Agricultural Export Resources</h1>
+                    <p class="resources-subtitle">Comprehensive guides, documentation templates, and trade resources to support your agricultural export business. Access valuable industry insights and regulatory information.</p>
+                    
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <h2>Export Documentation</h2>
+                            <p>Templates and guides for export certificates, shipping documents, and regulatory compliance.</p>
+                            <span class="coming-soon">Coming Soon</span>
+                        </div>
+                        
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h2>Market Intelligence</h2>
+                            <p>Industry reports, market trends, and pricing insights for global agricultural markets.</p>
+                            <span class="coming-soon">Coming Soon</span>
+                        </div>
+                        
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h2>Export Guides</h2>
+                            <p>Step-by-step guides for agricultural export processes, regulations, and best practices.</p>
+                            <span class="coming-soon">Coming Soon</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-section">
+                        <h2>Need Immediate Assistance?</h2>
+                        <p>Contact our export team for personalized guidance and support with your agricultural export requirements.</p>
+                        <div class="cta-buttons">
+                            <a href="index.html#contact" class="btn btn-primary">Contact Export Team</a>
+                            <a href="index.html" class="btn btn-secondary">Return to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <script src="assets/js/script.js" defer></script>
 </body>
 </html>
