@@ -256,7 +256,15 @@ function animateCounters() {
 
     counters.forEach(counter => {
         if (isInViewport(counter) && !counter.classList.contains('counted')) {
-            const target = parseInt(counter.textContent.replace(/[^\d]/g, ''));
+            const originalText = counter.textContent;
+            
+            // Skip animation for text that contains non-numeric characters like "24/7"
+            if (originalText.includes('/') || originalText.includes('%') || originalText.includes('+')) {
+                counter.classList.add('counted');
+                return;
+            }
+            
+            const target = parseInt(originalText.replace(/[^\d]/g, ''));
             const duration = 600; // Faster counter animation
             const startTime = performance.now();
             const startValue = 0;
@@ -269,12 +277,12 @@ function animateCounters() {
                 const easedProgress = 1 - Math.pow(1 - progress, 3);
                 const current = Math.floor(startValue + (target - startValue) * easedProgress);
                 
-                counter.textContent = counter.textContent.replace(/\d+/, current);
+                counter.textContent = originalText.replace(/\d+/, current);
                 
                 if (progress < 1) {
                     requestAnimationFrame(updateCounter);
                 } else {
-                    counter.textContent = counter.textContent.replace(/\d+/, target);
+                    counter.textContent = originalText.replace(/\d+/, target);
                 }
             }
             
