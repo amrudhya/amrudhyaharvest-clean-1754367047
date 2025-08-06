@@ -2121,19 +2121,7 @@ p {
     line-height: 1.4;
 }
 
-.footer-bottom-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-}
-
-.footer-bottom-links a {
-    color: rgba(255, 255, 255, 0.6);
-    text-decoration: none;
-    font-size: 0.85rem;
-    transition: color var(--transition-medium);
-    position: relative;
-}
+/* Duplicate removed - using earlier definition */
 
 .footer-bottom-links a::after {
     content: '';
