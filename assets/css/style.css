@@ -3497,25 +3497,7 @@ button:focus {
     outline-offset: 2px;
 }
 
-/* Skip to Main Content Link */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 6px;
-    background: var(--primary-dark);
-    color: var(--white);
-    padding: 8px;
-    z-index: 10001;
-    text-decoration: none;
-    border-radius: var(--border-radius);
-    font-weight: var(--font-weight-semibold);
-    transition: top 0.3s ease;
-}
 
-.skip-link:focus {
-    top: 6px;
-    outline: 3px solid var(--white);
-}
 
 /* High Contrast Mode Support */
 @media (prefers-contrast: high) {

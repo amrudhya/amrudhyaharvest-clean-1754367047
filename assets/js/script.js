@@ -1070,37 +1070,7 @@ function initKeyboardNavigation() {
     });
 }
 
-/**
- * Add skip to content link
- */
-function addSkipLink() {
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main-content';
-    skipLink.textContent = 'Skip to main content';
-    skipLink.className = 'skip-link';
-    skipLink.style.cssText = `
-        position: absolute;
-        top: -40px;
-        left: 6px;
-        background: var(--primary-forest);
-        color: white;
-        padding: 8px;
-        text-decoration: none;
-        border-radius: 4px;
-        z-index: 10000;
-        transition: top 0.3s;
-    `;
-    
-    skipLink.addEventListener('focus', () => {
-        skipLink.style.top = '6px';
-    });
-    
-    skipLink.addEventListener('blur', () => {
-        skipLink.style.top = '-40px';
-    });
-    
-    document.body.insertBefore(skipLink, document.body.firstChild);
-}
+
 
 // ==========================================
 // Event Listeners
@@ -1291,7 +1261,6 @@ function init() {
     initLazyLoading();
     initKeyboardNavigation();
     initRealTimeValidation();
-    addSkipLink();
     initErrorHandling();
     monitorPerformance();
     
@@ -1299,12 +1268,7 @@ function init() {
     handleNavbarScroll();
     toggleBackToTop();
     
-    // Add main content ID for skip link
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-        heroSection.id = 'main-content';
-        heroSection.setAttribute('tabindex', '-1');
-    }
+
     
     // Smooth scroll polyfill check
     if (!('scrollBehavior' in document.documentElement.style)) {
