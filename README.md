@@ -1,11 +1,11 @@
-# AmrudhyaHarvest Website
+# Amrudhya Harvests Website
 
 ## 🌾 Premium Indian Agricultural Exports
 
 **Live Website**: [amrudhyaharvest.com](https://amrudhyaharvest.com)
 
 ### About
-AmrudhyaHarvest specializes in exporting premium quality agricultural products from India to global markets. We supply high-quality pulses, rice, spices, and cold-pressed oils to over 50 countries worldwide.
+Amrudhya Harvests specializes in exporting premium quality agricultural products from India to global markets. We supply high-quality pulses, rice, spices, and cold-pressed oils to over 50 countries worldwide.
 
 ### Features
 - 🌐 Export-focused B2B design

@@ -1,5 +1,5 @@
-# GitHub Pages configuration for AmrudhyaHarvest
-title: "AmrudhyaHarvest - Premium Indian Agricultural Exports"
+# GitHub Pages configuration for Amrudhya Harvests
+title: "Amrudhya Harvests - Premium Indian Agricultural Exports"
 description: "Harvesting India's Purity, Shipping to the World. Premium quality agricultural products from India."
 url: "https://amrudhyaharvest.com"
 baseurl: ""
@@ -11,13 +11,14 @@ plugins:
 
 # SEO settings
 lang: en
-author: AmrudhyaHarvest
+author: Amrudhya Harvests
 twitter:
   username: amrudhyaharvest
 social:
-  name: AmrudhyaHarvest
+  name: Amrudhya Harvests
   links:
     - https://wa.me/919106516439
+    - https://www.linkedin.com/company/amrudhya-harvests/
 
 # Exclude files from processing
 exclude:

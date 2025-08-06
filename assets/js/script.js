@@ -1,5 +1,5 @@
 /**
- * AmrudhyaHarvest Website JavaScript
+ * Amrudhya Harvests Website JavaScript
  * Modern, interactive functionality with smooth animations
  */
 
@@ -556,7 +556,7 @@ function validateField(fieldName) {
  */
 function sendBackupEmail(formData) {
     try {
-        const subject = encodeURIComponent('New Export Inquiry from AmrudhyaHarvest Website');
+        const subject = encodeURIComponent('New Export Inquiry from Amrudhya Harvests Website');
         const body = encodeURIComponent(`
 New export inquiry received:
 
@@ -569,7 +569,7 @@ Message:
 ${formData.message || 'No message provided'}
 
 ---
-Sent from AmrudhyaHarvest website contact form
+Sent from Amrudhya Harvests website contact form
 Website: https://amrudhyaharvest.com
         `);
         
@@ -1149,6 +1149,173 @@ function initFallbackEventListeners() {
 }
 
 // ==========================================
+// Product Gallery Functionality
+// ==========================================
+
+/**
+ * Initialize product gallery functionality
+ */
+function initProductGallery() {
+    const galleryButtons = document.querySelectorAll('.gallery-btn');
+    const closeButtons = document.querySelectorAll('.close-gallery');
+    const galleryTabs = document.querySelectorAll('.gallery-tab');
+    const modalContainer = document.querySelector('.product-galleries');
+    
+    // Gallery button click handlers
+    galleryButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const category = this.dataset.category;
+            const gallery = document.getElementById(`${category}-gallery`);
+            
+            if (gallery && modalContainer) {
+                // Hide all galleries first
+                document.querySelectorAll('.product-gallery').forEach(g => {
+                    g.classList.remove('active');
+                    g.style.display = 'none';
+                });
+                
+                // Show modal container
+                modalContainer.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                
+                // Show the selected gallery
+                gallery.style.display = 'block';
+                setTimeout(() => {
+                    gallery.classList.add('active');
+                }, 10);
+            }
+        });
+    });
+    
+    // Close button handlers
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            closeModal();
+        });
+    });
+    
+    // Close modal when clicking on backdrop
+    if (modalContainer) {
+        modalContainer.addEventListener('click', function(e) {
+            if (e.target === modalContainer) {
+                closeModal();
+            }
+        });
+    }
+    
+    // Close modal function
+    function closeModal() {
+        if (modalContainer) {
+            modalContainer.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Hide all galleries
+            setTimeout(() => {
+                document.querySelectorAll('.product-gallery').forEach(g => {
+                    g.classList.remove('active');
+                    g.style.display = 'none';
+                });
+            }, 300);
+        }
+    }
+    
+    // Gallery tab functionality (for spices gallery)
+    galleryTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const targetContent = this.dataset.gallery;
+            const parentGallery = this.closest('.product-gallery');
+            
+            if (parentGallery) {
+                // Remove active class from all tabs in this gallery
+                parentGallery.querySelectorAll('.gallery-tab').forEach(t => {
+                    t.classList.remove('active');
+                });
+                
+                // Hide all content sections in this gallery
+                parentGallery.querySelectorAll('.gallery-content').forEach(content => {
+                    content.classList.remove('active');
+                    content.style.display = 'none';
+                });
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Show target content
+                const targetElement = document.getElementById(targetContent);
+                if (targetElement) {
+                    targetElement.style.display = 'block';
+                    // Small delay for smooth transition
+                    setTimeout(() => {
+                        targetElement.classList.add('active');
+                    }, 50);
+                }
+            }
+        });
+    });
+    
+    // Keyboard navigation for galleries
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const openModal = document.querySelector('.product-galleries.active');
+            if (openModal) {
+                closeModal();
+            }
+        }
+    });
+    
+    // Touch/swipe support for mobile gallery tabs
+    let startX = null;
+    let currentTabIndex = 0;
+    
+    if (modalContainer) {
+        modalContainer.addEventListener('touchstart', function(e) {
+            if (e.target.closest('.gallery-tabs')) {
+                startX = e.touches[0].clientX;
+            }
+        }, { passive: true });
+        
+        modalContainer.addEventListener('touchend', function(e) {
+            if (startX !== null && e.target.closest('.gallery-tabs')) {
+                const endX = e.changedTouches[0].clientX;
+                const diffX = startX - endX;
+                
+                // Only trigger if swipe is significant (>50px)
+                if (Math.abs(diffX) > 50) {
+                    const activeGallery = document.querySelector('.product-gallery.active');
+                    if (activeGallery) {
+                        const tabs = activeGallery.querySelectorAll('.gallery-tab');
+                        if (tabs.length > 1) {
+                            if (diffX > 0 && currentTabIndex < tabs.length - 1) {
+                                // Swipe left - next tab
+                                currentTabIndex++;
+                                tabs[currentTabIndex].click();
+                            } else if (diffX < 0 && currentTabIndex > 0) {
+                                // Swipe right - previous tab
+                                currentTabIndex--;
+                                tabs[currentTabIndex].click();
+                            }
+                        }
+                    }
+                }
+                startX = null;
+            }
+        }, { passive: true });
+    }
+    
+    // Update current tab index when tabs are clicked
+    galleryTabs.forEach((tab, index) => {
+        tab.addEventListener('click', function() {
+            const parentGallery = this.closest('.product-gallery');
+            if (parentGallery) {
+                const allTabsInGallery = Array.from(parentGallery.querySelectorAll('.gallery-tab'));
+                currentTabIndex = allTabsInGallery.indexOf(this);
+            }
+        });
+    });
+}
+
+// ==========================================
 // Initialization
 // ==========================================
 
@@ -1156,7 +1323,7 @@ function initFallbackEventListeners() {
  * Initialize all functionality when DOM is ready
  */
 function init() {
-    console.log('AmrudhyaHarvest website initialized');
+    console.log('Amrudhya Harvests website initialized');
     
     // Initialize components
     initAnimations();
@@ -1164,6 +1331,7 @@ function init() {
     initMapMarkers();
     initProductCards();
     initProductFiltering();
+    initProductGallery();
     initLazyLoading();
     initKeyboardNavigation();
     initRealTimeValidation();
