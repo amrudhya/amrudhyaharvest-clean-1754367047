@@ -15,20 +15,42 @@
         animation: none !important;
     }
     
-    /* Improve touch targets */
-    .btn, .nav-link, .tab-btn, .hamburger {
+    /* Improve touch targets - minimum 44px for accessibility */
+    .btn, .nav-link, .tab-btn, .hamburger, .gallery-btn, .close-gallery {
         min-height: 44px;
         min-width: 44px;
         display: flex;
         align-items: center;
         justify-content: center;
         touch-action: manipulation; /* Disable double-tap zoom */
+        -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
     }
     
     /* Optimize scrolling */
     body {
         -webkit-overflow-scrolling: touch;
         scroll-behavior: auto; /* Disable smooth scroll on mobile for better performance */
+    }
+    
+    /* Better mobile typography */
+    html {
+        -webkit-text-size-adjust: 100%; /* Prevent font scaling */
+        text-size-adjust: 100%;
+    }
+    
+    /* Optimize images for mobile */
+    img {
+        height: auto;
+        max-width: 100%;
+        image-rendering: optimizeSpeed;
+    }
+    
+    /* Reduce GPU usage on mobile */
+    .product-card:hover,
+    .feature-card:hover,
+    .cert-card:hover {
+        transform: none;
+        box-shadow: var(--shadow-light);
     }
 }
 
@@ -46,10 +68,152 @@
     backface-visibility: hidden;
 }
 
-/* Optimize images */
+/* Optimize images for all devices and connections */
 img {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
+    loading: lazy; /* Native lazy loading where supported */
+    decoding: async;
+    height: auto;
+    max-width: 100%;
+}
+
+/* Prefers reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Optimize for slow connections */
+@media (prefers-reduced-data: reduce) {
+    /* Disable background patterns on slow connections */
+    .hero {
+        background-image: none;
+    }
+    
+    .product-gallery {
+        background: none;
+    }
+    
+    /* Simplify shadows and effects */
+    .product-card,
+    .feature-card,
+    .cert-card {
+        box-shadow: var(--shadow-light);
+    }
+}
+
+/* Mobile-optimized class for JavaScript-applied optimizations */
+.mobile-optimized .product-card,
+.mobile-optimized .feature-card,
+.mobile-optimized .cert-card {
+    transition: transform 0.1s ease;
+}
+
+.mobile-optimized .product-card:hover,
+.mobile-optimized .feature-card:hover,
+.mobile-optimized .cert-card:hover {
+    transform: translateY(-2px) !important;
+}
+
+/* Responsive images with aspect ratio preservation */
+.responsive-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: attr(width) / attr(height);
+    object-fit: cover;
+}
+
+/* Better touch feedback for mobile */
+@media (max-width: 768px) {
+    button:active,
+    .btn:active,
+    .tab-btn:active {
+        transform: scale(0.98);
+        transition: transform 0.1s;
+    }
+}
+
+/* Comprehensive Responsive Design Test Coverage */
+/* These styles ensure proper display across all device sizes */
+
+/* Large Desktop (1600px+) */
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .hero h1 {
+        font-size: 4rem;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Desktop (1200px - 1599px) - Already covered above */
+/* Laptop (1024px - 1199px) - Already covered above */
+/* Tablet Landscape (768px - 1023px) - Already covered above */
+/* Tablet Portrait (481px - 767px) - Already covered above */
+/* Mobile Large (361px - 480px) - Already covered above */
+/* Mobile Small (320px - 360px) - Already covered above */
+
+/* Extra small devices (less than 320px) */
+@media (max-width: 319px) {
+    .container {
+        padding: 0.5rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .product-card {
+        padding: 1rem;
+    }
+    
+    .nav-menu {
+        font-size: 0.9rem;
+    }
+}
+
+/* Landscape orientation optimizations */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: 80vh;
+        padding: 2rem 0;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .navbar {
+        padding: 0.5rem 0;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo {
+        image-rendering: -webkit-optimize-contrast;
+    }
+    
+    .product-icon i {
+        font-size: 1.1em; /* Slightly larger icons for crisp display */
+    }
 }
 
 /* Reduce layout thrashing */

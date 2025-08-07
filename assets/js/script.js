@@ -13,6 +13,35 @@ const backToTopBtn = document.getElementById('back-to-top');
 const contactForm = document.getElementById('contact-form');
 
 // ==========================================
+// Mobile & Performance Detection
+// ==========================================
+
+/**
+ * Detect mobile device and connection quality
+ */
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+const isSlowConnection = navigator.connection && (navigator.connection.effectiveType === 'slow-2g' || navigator.connection.effectiveType === '2g' || navigator.connection.saveData);
+
+/**
+ * Performance optimizations for mobile and slow connections
+ */
+function optimizeForDevice() {
+    if (isMobile || isSlowConnection) {
+        // Reduce animation frequency
+        document.documentElement.style.setProperty('--animation-speed', '0.2s');
+        
+        // Disable expensive effects on mobile
+        const complexElements = document.querySelectorAll('.pulse-animation, .float-animation');
+        complexElements.forEach(el => el.style.animation = 'none');
+        
+        // Use simpler shadows on mobile
+        if (isMobile) {
+            document.documentElement.classList.add('mobile-optimized');
+        }
+    }
+}
+
+// ==========================================
 // Utility Functions
 // ==========================================
 
@@ -1381,8 +1410,12 @@ function init() {
 
 // Wait for DOM to be ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', () => {
+        optimizeForDevice(); // Apply device optimizations first
+        init();
+    });
 } else {
+    optimizeForDevice();
     init();
 }
 
