@@ -70,6 +70,15 @@
         .packaging-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; }
         .package-item { text-align: center; padding: 1rem; border: 1px solid var(--border-light); border-radius: var(--border-radius); }
         .package-placeholder { width: 100%; height: 120px; background: var(--light-gray); border-radius: var(--border-radius); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: var(--text-light); }
+        .product-image-gallery { display: flex; flex-direction: column; gap: 1rem; }
+        .main-product-image { width: 100%; height: 300px; border-radius: var(--border-radius-lg); overflow: hidden; position: relative; }
+        .thumbnail-images { display: flex; gap: 0.5rem; }
+        .thumbnail { width: 60px; height: 60px; border-radius: var(--border-radius); overflow: hidden; cursor: pointer; border: 2px solid transparent; }
+        .thumbnail.active { border-color: var(--accent-green); }
+        .product-image { width: 100%; height: 100%; object-fit: cover; }
+        .image-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--light-gray), var(--off-white)); display: flex; align-items: center; justify-content: center; flex-direction: column; color: var(--text-gray); }
+        .image-placeholder i { font-size: 2rem; margin-bottom: 0.5rem; }
+        .image-placeholder span { font-size: 0.9rem; font-weight: 500; }
         @media (max-width: 768px) { 
             .product-grid { grid-template-columns: 1fr; gap: 2rem; }
             .product-specs-grid { grid-template-columns: 1fr; }
@@ -126,9 +135,12 @@
                         <h1 class="section-title" id="product-title">Product Details</h1>
                         <p class="section-subtitle" id="product-description">Comprehensive specifications for B2B buyers and importers</p>
                     </div>
-                    <div class="product-image-placeholder">
-                        <div style="width: 100%; height: 300px; background: var(--light-gray); border-radius: var(--border-radius-lg); display: flex; align-items: center; justify-content: center; color: var(--text-light);">
-                            <i class="fas fa-image" style="font-size: 3rem;"></i>
+                    <div class="product-image-gallery">
+                        <div class="main-product-image" id="main-product-image">
+                            <!-- Main product image will be loaded here -->
+                        </div>
+                        <div class="thumbnail-images">
+                            <!-- Thumbnail images will be loaded here -->
                         </div>
                     </div>
                 </div>
@@ -183,6 +195,58 @@
 
     <!-- JavaScript -->
     <script>
+        // Product images data
+        const productImages = {
+            rice: {
+                main: { icon: 'fas fa-wheat-awn', label: 'Premium Basmati Rice', color: '#f4e4c1' },
+                thumbnails: [
+                    { icon: 'fas fa-seedling', label: '1121 Basmati', color: '#e8f5e8' },
+                    { icon: 'fas fa-grain', label: 'Golden Sella', color: '#ffd700' },
+                    { icon: 'fas fa-bowl-rice', label: 'Packaged Rice', color: '#f0f8f0' }
+                ]
+            },
+            pulses: {
+                main: { icon: 'fas fa-circle', label: 'Premium Pulses & Lentils', color: '#ffeaa7' },
+                thumbnails: [
+                    { icon: 'fas fa-dot-circle', label: 'Kabuli Chana', color: '#fff2e6' },
+                    { icon: 'fas fa-circle', label: 'Yellow Dal', color: '#fff9c4' },
+                    { icon: 'fas fa-spa', label: 'Green Moong', color: '#d4edda' }
+                ]
+            },
+            spices: {
+                main: { icon: 'fas fa-pepper-hot', label: 'Whole Spices Collection', color: '#ff6b35' },
+                thumbnails: [
+                    { icon: 'fas fa-seedling', label: 'Cumin Seeds', color: '#8b4513' },
+                    { icon: 'fas fa-star', label: 'Coriander', color: '#daa520' },
+                    { icon: 'fas fa-leaf', label: 'Bay Leaves', color: '#6b8e23' }
+                ]
+            },
+            powders: {
+                main: { icon: 'fas fa-mortar-pestle', label: 'Premium Spice Powders', color: '#dc3545' },
+                thumbnails: [
+                    { icon: 'fas fa-palette', label: 'Turmeric Powder', color: '#ffd700' },
+                    { icon: 'fas fa-fire', label: 'Chilli Powder', color: '#dc3545' },
+                    { icon: 'fas fa-seedling', label: 'Cumin Powder', color: '#8b4513' }
+                ]
+            },
+            herbs: {
+                main: { icon: 'fas fa-leaf', label: 'Herbal & Superfood Powders', color: '#28a745' },
+                thumbnails: [
+                    { icon: 'fas fa-seedling', label: 'Moringa Powder', color: '#228b22' },
+                    { icon: 'fas fa-heart', label: 'Ginger Powder', color: '#daa520' },
+                    { icon: 'fas fa-spa', label: 'Tulsi Leaves', color: '#90ee90' }
+                ]
+            },
+            custom: {
+                main: { icon: 'fas fa-boxes', label: 'Custom Packaging Solutions', color: '#17a2b8' },
+                thumbnails: [
+                    { icon: 'fas fa-shopping-bag', label: 'Retail Packs', color: '#20c997' },
+                    { icon: 'fas fa-box', label: 'Bulk Bags', color: '#6c757d' },
+                    { icon: 'fas fa-tags', label: 'Custom Labels', color: '#fd7e14' }
+                ]
+            }
+        };
+
         // Product data with detailed B2B specifications
         const productData = {
             rice: {
@@ -242,6 +306,19 @@
                             "Seasonal Variations": "Oct-Mar premium crop",
                             "Volume Discounts": "Available for 100+ MT",
                             "Sample Policy": "Free samples up to 1kg"
+                        }
+                    },
+                    {
+                        title: "Packaging Gallery & Options",
+                        data: {
+                            "Retail Pouches": "1kg, 5kg, 10kg BOPP laminated pouches",
+                            "Bulk Export Bags": "25kg, 50kg PP/Jute bags with liner",
+                            "Custom Branding": "Amrudhya Harvests or white label",
+                            "Vacuum Packaging": "Extended shelf life options",
+                            "Container Loading": "Palletized for easy handling",
+                            "Moisture Barrier": "High-grade barrier films",
+                            "Quality Sealing": "Heat sealed, tamper evident",
+                            "Export Documentation": "All bags labeled with lot details"
                         }
                     }
                 ]
@@ -565,13 +642,17 @@
             const category = urlParams.get('category') || 'rice';
             
             const product = productData[category];
-            if (!product) return;
+            const images = productImages[category];
+            if (!product || !images) return;
 
             // Update page content
             document.getElementById('product-badge').textContent = product.badge;
             document.getElementById('product-title').textContent = product.title;
             document.getElementById('product-description').textContent = product.description;
             document.getElementById('category-breadcrumb').textContent = product.title;
+
+            // Load product images
+            loadProductImages(images);
 
             // Generate specifications cards
             const specsContainer = document.getElementById('product-specs');
@@ -598,6 +679,56 @@
 
             // Update page title
             document.title = `${product.title} - Detailed Specifications | Amrudhya Harvests`;
+        }
+
+        // Load product images with professional placeholders
+        function loadProductImages(images) {
+            const mainImageContainer = document.getElementById('main-product-image');
+            const thumbnailContainer = document.querySelector('.thumbnail-images');
+            
+            // Create main image placeholder
+            const mainImage = document.createElement('div');
+            mainImage.className = 'image-placeholder';
+            mainImage.style.background = `linear-gradient(135deg, ${images.main.color}20, ${images.main.color}10)`;
+            mainImage.innerHTML = `
+                <i class="${images.main.icon}" style="color: ${images.main.color}; font-size: 4rem; margin-bottom: 1rem;"></i>
+                <span style="color: var(--text-gray); font-weight: 600;">${images.main.label}</span>
+                <small style="color: var(--text-light); margin-top: 0.5rem;">Professional product photography available</small>
+            `;
+            mainImageContainer.appendChild(mainImage);
+            
+            // Create thumbnail placeholders
+            images.thumbnails.forEach((thumb, index) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+                thumbnail.innerHTML = `
+                    <div class="image-placeholder" style="background: linear-gradient(135deg, ${thumb.color}40, ${thumb.color}20);">
+                        <i class="${thumb.icon}" style="color: ${thumb.color}; font-size: 1.5rem;"></i>
+                    </div>
+                `;
+                thumbnail.addEventListener('click', () => switchMainImage(thumb, thumbnail));
+                thumbnailContainer.appendChild(thumbnail);
+            });
+        }
+        
+        // Switch main image when thumbnail is clicked
+        function switchMainImage(imageData, thumbnailElement) {
+            const mainImageContainer = document.getElementById('main-product-image');
+            mainImageContainer.innerHTML = '';
+            
+            const mainImage = document.createElement('div');
+            mainImage.className = 'image-placeholder';
+            mainImage.style.background = `linear-gradient(135deg, ${imageData.color}20, ${imageData.color}10)`;
+            mainImage.innerHTML = `
+                <i class="${imageData.icon}" style="color: ${imageData.color}; font-size: 4rem; margin-bottom: 1rem;"></i>
+                <span style="color: var(--text-gray); font-weight: 600;">${imageData.label}</span>
+                <small style="color: var(--text-light); margin-top: 0.5rem;">High-resolution images available on request</small>
+            `;
+            mainImageContainer.appendChild(mainImage);
+            
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+            thumbnailElement.classList.add('active');
         }
 
         // Initialize page
