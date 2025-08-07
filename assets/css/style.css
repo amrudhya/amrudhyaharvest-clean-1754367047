@@ -439,6 +439,20 @@ p {
     transform: translateY(-1px);
 }
 
+.btn-secondary {
+    background: var(--light-gray);
+    color: var(--text-gray);
+    border-color: var(--medium-gray);
+    font-weight: var(--font-weight-medium);
+}
+
+.btn-secondary:hover {
+    background: var(--accent-green);
+    color: var(--white);
+    border-color: var(--accent-green);
+    transform: translateY(-1px);
+}
+
 /* ==========================================
    Export Badge
    ========================================== */
@@ -1063,13 +1077,31 @@ p {
 
 .product-actions {
     display: flex;
+    gap: 0.5rem;
     justify-content: center;
     margin-top: auto;
+    flex-wrap: wrap;
 }
 
 .product-actions .btn {
-    padding: 0.75rem 2rem;
+    padding: 0.75rem 1.5rem;
     font-size: 0.9rem;
+    min-width: 120px;
+    flex: 1;
+    max-width: 160px;
+}
+
+@media (max-width: 768px) {
+    .product-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .product-actions .btn {
+        flex: none;
+        max-width: none;
+        min-width: auto;
+    }
 }
 
 /* ==========================================
