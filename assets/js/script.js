@@ -1353,6 +1353,97 @@ function initProductGallery() {
 }
 
 // ==========================================
+// Floating Action Buttons
+// ==========================================
+
+function initFloatingButtons() {
+    const bulkQuoteBtn = document.querySelector('.bulk-quote-float');
+    const whatsappBtn = document.querySelector('.whatsapp-float');
+    const contactSection = document.getElementById('contact');
+    
+    if (bulkQuoteBtn) {
+        bulkQuoteBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Add click effect
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+            
+            // Smooth scroll to contact section
+            if (contactSection) {
+                const offsetTop = contactSection.offsetTop - 80; // Account for navbar
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+                
+                // Focus on the contact form after scrolling
+                setTimeout(() => {
+                    const emailField = contactSection.querySelector('input[name="email"]');
+                    if (emailField) {
+                        emailField.focus();
+                        // Add a subtle highlight to the form
+                        const form = contactSection.querySelector('.contact-form');
+                        if (form) {
+                            form.style.boxShadow = '0 0 20px rgba(107, 166, 68, 0.3)';
+                            setTimeout(() => {
+                                form.style.boxShadow = '';
+                            }, 2000);
+                        }
+                    }
+                }, 800);
+            }
+        });
+    }
+    
+    // Enhanced WhatsApp button with analytics
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', function() {
+            // Add click effect
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+            
+            // Track WhatsApp clicks (if analytics is available)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'whatsapp_click', {
+                    'event_category': 'engagement',
+                    'event_label': 'floating_whatsapp_button'
+                });
+            }
+        });
+    }
+    
+    // Show/hide floating buttons based on scroll position
+    const floatingButtons = document.querySelector('.floating-buttons');
+    if (floatingButtons) {
+        let isVisible = true;
+        
+        window.addEventListener('scroll', throttle(() => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const shouldShow = scrollTop > 100; // Show after 100px scroll
+            
+            if (shouldShow && !isVisible) {
+                floatingButtons.style.opacity = '1';
+                floatingButtons.style.visibility = 'visible';
+                isVisible = true;
+            } else if (!shouldShow && isVisible) {
+                floatingButtons.style.opacity = '0.8';
+                isVisible = false;
+            }
+        }, 100));
+        
+        // Initial state - always visible
+        floatingButtons.style.transition = 'all 0.3s ease';
+        floatingButtons.style.opacity = '1';
+        floatingButtons.style.visibility = 'visible';
+    }
+}
+
+// ==========================================
 // Initialization
 // ==========================================
 
@@ -1397,6 +1488,9 @@ function init() {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         console.log('User prefers dark mode - consider implementing dark theme');
     }
+    
+    // Initialize floating buttons
+    initFloatingButtons();
     
     // Performance mark
     if ('performance' in window && 'mark' in window.performance) {
