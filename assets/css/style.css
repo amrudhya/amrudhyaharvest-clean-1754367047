@@ -2830,7 +2830,7 @@ button:focus {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
 }
 
@@ -2946,8 +2946,8 @@ button:focus {
     }
     
     .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2.5rem;
     }
     
     .gallery-header h3 {
@@ -2966,7 +2966,7 @@ button:focus {
     }
     
     .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
     }
     
@@ -2999,7 +2999,7 @@ button:focus {
     }
     
     .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 1.75rem;
     }
     
@@ -3029,7 +3029,7 @@ button:focus {
     }
     
     .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 1.25rem;
     }
     
