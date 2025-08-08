@@ -290,6 +290,8 @@ function animateCounters() {
             // Skip animation for text that contains non-numeric characters like "24/7"
             if (originalText.includes('/') || originalText.includes('%') || originalText.includes('+')) {
                 counter.classList.add('counted');
+                // Ensure the original text is preserved
+                counter.textContent = originalText;
                 return;
             }
             
@@ -1440,6 +1442,183 @@ function initFloatingButtons() {
         floatingButtons.style.transition = 'all 0.3s ease';
         floatingButtons.style.opacity = '1';
         floatingButtons.style.visibility = 'visible';
+    }
+}
+
+// ==========================================
+// Enhanced Gallery Features
+// ==========================================
+
+function initEnhancedGallery() {
+    // Initialize gallery search functionality
+    const searchInputs = document.querySelectorAll('.search-input');
+    searchInputs.forEach(input => {
+        input.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const galleryItems = this.closest('.product-gallery').querySelectorAll('.gallery-item');
+            
+            galleryItems.forEach(item => {
+                const title = item.querySelector('h4').textContent.toLowerCase();
+                const description = item.querySelector('p').textContent.toLowerCase();
+                const listItems = Array.from(item.querySelectorAll('li')).map(li => li.textContent.toLowerCase()).join(' ');
+                
+                const matchesSearch = title.includes(searchTerm) || 
+                                    description.includes(searchTerm) || 
+                                    listItems.includes(searchTerm);
+                
+                if (matchesSearch) {
+                    item.style.display = 'block';
+                    item.style.animation = 'slideInUp 0.3s ease forwards';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // Initialize filter chips
+    const filterChips = document.querySelectorAll('.filter-chip');
+    filterChips.forEach(chip => {
+        chip.addEventListener('click', function() {
+            // Update active state
+            this.parentElement.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filter = this.dataset.filter;
+            const galleryItems = this.closest('.product-gallery').querySelectorAll('.gallery-item');
+            
+            galleryItems.forEach(item => {
+                let shouldShow = false;
+                
+                if (filter === 'all') {
+                    shouldShow = true;
+                } else if (filter === 'high-protein' && item.dataset.protein === 'high') {
+                    shouldShow = true;
+                } else if (filter === 'quick-cook' && item.dataset.cook === 'quick') {
+                    shouldShow = true;
+                } else if (filter === 'export-grade' && item.dataset.export === 'yes') {
+                    shouldShow = true;
+                }
+                
+                if (shouldShow) {
+                    item.style.display = 'block';
+                    item.style.animation = 'slideInUp 0.4s ease forwards';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // Initialize view toggle buttons
+    const viewBtns = document.querySelectorAll('.view-btn');
+    viewBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.parentElement.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            const view = this.dataset.view;
+            const galleryGrid = this.closest('.product-gallery').querySelector('.gallery-grid');
+            
+            if (view === 'list') {
+                galleryGrid.style.gridTemplateColumns = '1fr';
+                galleryGrid.classList.add('list-view');
+            } else {
+                galleryGrid.style.gridTemplateColumns = '';
+                galleryGrid.classList.remove('list-view');
+            }
+        });
+    });
+    
+    // Initialize quick quote buttons
+    const quickQuoteBtns = document.querySelectorAll('.quick-quote-btn');
+    quickQuoteBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const productName = this.closest('.gallery-item').querySelector('h4').textContent;
+            const contactSection = document.getElementById('contact');
+            const messageField = contactSection.querySelector('textarea[name="message"]');
+            
+            // Pre-fill contact form with product info
+            if (messageField) {
+                messageField.value = `I'm interested in getting a bulk quote for ${productName}. Please provide pricing, MOQ, and export documentation details.`;
+            }
+            
+            // Close gallery and scroll to contact
+            document.querySelector('.product-galleries').classList.remove('active');
+            contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Focus on email field after scrolling
+            setTimeout(() => {
+                const emailField = contactSection.querySelector('input[name="email"]');
+                if (emailField) emailField.focus();
+            }, 800);
+        });
+    });
+    
+    // Initialize product comparison
+    let selectedProducts = [];
+    const compareCheckboxes = document.querySelectorAll('.product-compare');
+    compareCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const productId = this.closest('.gallery-item').dataset.product;
+            
+            if (this.checked) {
+                selectedProducts.push(productId);
+                this.closest('.gallery-item').classList.add('selected-for-comparison');
+            } else {
+                selectedProducts = selectedProducts.filter(id => id !== productId);
+                this.closest('.gallery-item').classList.remove('selected-for-comparison');
+            }
+            
+            // Update comparison button state
+            const compareBtn = document.querySelector('.gallery-action-btn[title="Compare Selected"]');
+            if (compareBtn) {
+                compareBtn.style.background = selectedProducts.length > 1 ? 'var(--accent-green)' : 'var(--light-gray)';
+                compareBtn.style.color = selectedProducts.length > 1 ? 'var(--white)' : 'var(--text-gray)';
+            }
+        });
+    });
+    
+    // Initialize gallery action buttons
+    const actionBtns = document.querySelectorAll('.gallery-action-btn');
+    actionBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const action = this.title.toLowerCase();
+            
+            if (action.includes('compare') && selectedProducts.length > 1) {
+                showProductComparison(selectedProducts);
+            } else if (action.includes('pdf')) {
+                exportToPDF();
+            } else if (action.includes('share')) {
+                shareGallery();
+            }
+        });
+    });
+}
+
+function showProductComparison(products) {
+    // Create and show comparison modal
+    console.log('Comparing products:', products);
+    alert(`Comparison feature will show detailed side-by-side comparison of ${products.length} selected products.`);
+}
+
+function exportToPDF() {
+    console.log('Exporting gallery to PDF...');
+    alert('PDF export feature will generate a professional product catalog PDF.');
+}
+
+function shareGallery() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'Amrudhya Harvests Product Gallery',
+            text: 'Check out our premium agricultural products for export',
+            url: window.location.href
+        });
+    } else {
+        // Fallback: copy to clipboard
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            alert('Gallery link copied to clipboard!');
+        });
     }
 }
 
